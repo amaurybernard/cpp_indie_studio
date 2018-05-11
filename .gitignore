@@ -1,0 +1,5 @@
+bomberman
+*.à
+*~
+cmake-build-debug/
+.idea/
