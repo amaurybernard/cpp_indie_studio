@@ -6,20 +6,19 @@
 */
 
 #include <irrlicht/irrlicht.h>
+#include "Core/Core.hpp"
 using namespace irr;
 
 int 	main(void)
 {
-	// start up the engine
-	IrrlichtDevice *device = createDevice(video::EDT_OPENGL,
-		core::dimension2d<u32>(640,480));
-	if (!device)
-		return 84;
+	Core::Core	core;
 
-	video::IVideoDriver* driver = device->getVideoDriver();
-	scene::ISceneManager* scenemgr = device->getSceneManager();
 
-	device->setWindowCaption(L"Hello World!");
+
+	video::IVideoDriver* driver = core.getDevice()->getVideoDriver();
+	scene::ISceneManager* scenemgr = core.getDevice()->getSceneManager();
+
+	core.getDevice()->setWindowCaption(L"Hello World!");
 
 	// load and show quake2 .md2 model
 	scene::ISceneNode* node = scenemgr->addAnimatedMeshSceneNode(
@@ -36,7 +35,7 @@ int 	main(void)
 	scenemgr->addCameraSceneNodeFPS();
 
 	// draw everything
-	while(device->run() && driver)
+	while(core.getDevice()->run() && driver)
 	{
 		driver->beginScene(true, true, video::SColor(255,0,0,255));
 		scenemgr->drawAll();
@@ -44,6 +43,6 @@ int 	main(void)
 	}
 
 	// delete device
-	device->drop();
+	core.getDevice()->drop();
 	return 0;
 }
