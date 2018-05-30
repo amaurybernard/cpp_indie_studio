@@ -11,31 +11,14 @@
 int 	main(void)
 {
 	Engine::Engine	engine;
-	engine.getDevice()->setWindowCaption(L"Hello World!");
+	engine.getDevice()->setWindowCaption(L"BomberMan");
 
-	// load and show quake2 .md2 model
-	irr::scene::ISceneNode* node = engine.getSceneManager()->addAnimatedMeshSceneNode(
-		engine.getSceneManager()->getMesh("quake2model.md2"));
+	//todo: load start menu
+	engine.getDriver()->beginScene(true, true, irr::video::SColor(255,255,255,255));
+	engine.getSceneManager()->drawAll();
+	engine.getDriver()->endScene();
 
-	// if everything worked, add a texture and disable lighting
-	if (node)
-	{
-		node->setMaterialTexture(0, engine.getDriver()->getTexture("texture.bmp"));
-		node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+	while(engine.getDevice()->run() && engine.getDriver()) {
 	}
-
-	// add a first person shooter style user controlled camera
-	engine.getSceneManager()->addCameraSceneNodeFPS();
-
-	// draw everything
-	while(engine.getDevice()->run() && engine.getDriver())
-	{
-		engine.getDriver()->beginScene(true, true, irr::video::SColor(255,255,255,255));
-		engine.getSceneManager()->drawAll();
-		engine.getDriver()->endScene();
-	}
-
-	// delete device
-	engine.getDevice()->drop();
-	return 0;
+	return (0);
 }
