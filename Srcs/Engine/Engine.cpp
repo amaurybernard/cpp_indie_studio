@@ -6,7 +6,7 @@
 */
 
 #include <iostream>
-#include "Core/Engine.hpp"
+#include "Engine/Engine.hpp"
 
 Engine::Engine::Engine(irr::video::E_DRIVER_TYPE videoType,
 irr::core::dimension2d<irr::u32> dimension2d)

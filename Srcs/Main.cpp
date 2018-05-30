@@ -6,7 +6,7 @@
 */
 
 #include <irrlicht/irrlicht.h>
-#include "Core/Engine.hpp"
+#include "Engine/Engine.hpp"
 
 int 	main(void)
 {
