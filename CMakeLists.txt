@@ -1,3 +1,9 @@
+#
+# EPITECH PROJECT, 2018
+#   cpp_indie_studio
+# File description:
+#  cmake
+#
 cmake_minimum_required(VERSION 3.10)
 project(cpp_indie_studio)
 
