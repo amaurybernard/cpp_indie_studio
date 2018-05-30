@@ -11,24 +11,21 @@
 
 /** The Engine class keep all basic object needed by the graphical library */
 namespace Engine {
-	class Engine {
+	class Engine: public irr::IrrlichtDevice {
 	public:
 		Engine(irr::video::E_DRIVER_TYPE videoType
 		= irr::video::EDT_OPENGL,
 		irr::core::dimension2d<irr::u32> dimension2d
-		= irr::core::dimension2d<irr::u32>(1920, 1080));
+		= (irr::core::dimension2d<irr::u32>(1920, 1080)));
 		~Engine(void);
 
 	/* Public methods */
 	public:
 		irr::IrrlichtDevice *getDevice() const;
 		irr::scene::ISceneManager *getSceneManager() const;
-		irr::video::IVideoDriver *getDriver() const;
 
-		/* Private variables */
+	/* Private variables */
 	private:
-		irr::IrrlichtDevice			*_device;
-		irr::video::IVideoDriver		*_driver;
 		irr::scene::ISceneManager		*_sceneManager;
 	};
 }

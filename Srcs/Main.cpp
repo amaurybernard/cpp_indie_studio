@@ -6,19 +6,22 @@
 */
 
 #include <irrlicht/irrlicht.h>
-#include "Core/Engine.hpp"
+#include "Engine/Engine.hpp"
 
 int 	main(void)
 {
 	Engine::Engine	engine;
-	engine.getDevice()->setWindowCaption(L"BomberMan");
+	engine.setWindowCaption(L"BomberMan");
 
 	//todo: load start menu
-	engine.getDriver()->beginScene(true, true, irr::video::SColor(255,255,255,255));
+	engine.getVideoDriver()->beginScene(true, true, irr::video::SColor(255,255,255,255));
+	irr::video::ITexture* images = irr::driver->getTexture("../../media/2ddemo.png");
+	engine.getVideoDriver()->makeColorKeyTexture(images,
+	irr::core::position2d<irr::s32>(0,0));
 	engine.getSceneManager()->drawAll();
-	engine.getDriver()->endScene();
+	engine.getVideoDriver()->endScene();
 
-	while(engine.getDevice()->run() && engine.getDriver()) {
+	while(engine.getDevice()->run() && engine.getVideoDriver()) {
 	}
 	return (0);
 }
