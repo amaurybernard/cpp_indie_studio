@@ -8,17 +8,18 @@
 #include <irrlicht/irrlicht.h>
 #include "Engine/Engine.hpp"
 
+//todo: load start menu
 int 	main(void)
 {
 	Engine::Engine	engine;
 	engine.getDevice()->setWindowCaption(L"BomberMan");
 
-	//todo: load start menu
-	engine.getDriver()->beginScene(true, true, irr::video::SColor(255,255,255,255));
-	engine.getSceneManager()->drawAll();
-	engine.getDriver()->endScene();
-
 	while(engine.getDevice()->run() && engine.getDriver()) {
+		if (engine.getDevice()->isWindowActive()) {
+			engine.getDriver()->beginScene(true, true, irr::video::SColor(255,255,255,255));
+			engine.getSceneManager()->drawAll();
+			engine.getDriver()->endScene();
+		}
 	}
 	return (0);
 }
