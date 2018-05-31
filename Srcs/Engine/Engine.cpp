@@ -50,9 +50,9 @@ irr::scene::ISceneManager *Engine::Engine::getSceneManager() const
 	return _sceneManager;
 }
 
-const Engine::EventReceiver &Engine::Engine::getEventReceiver() const
+Engine::EventReceiver *Engine::Engine::getEventReceiver()
 {
-	return _EventReceiver;
+	return &_EventReceiver;
 }
 
 void Engine::Engine::update(void)

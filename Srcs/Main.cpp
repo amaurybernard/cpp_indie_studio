@@ -13,11 +13,10 @@
 int 	main(void)
 {
 	Engine::Engine		engine;
-	Engine::EventReceiver 	eventR = engine.getEventReceiver();
 
 	engine.getDevice()->setWindowCaption(L"BomberMan");
 	while(engine.getDevice()->run() && engine.getDriver()) {
-		if (eventR.isKeyDown(irr::KEY_SPACE)) {
+		if (engine.getEventReceiver()->isKeyDown(irr::KEY_SPACE)) {
 			puts("main: space is true");
 			//return (RT_FAILURE);
 		}

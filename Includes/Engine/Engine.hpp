@@ -22,7 +22,7 @@ namespace Engine {
 		~Engine(void);
 
 	public:	/* methods */
-		const EventReceiver &getEventReceiver() const;
+		EventReceiver *getEventReceiver();
 		irr::IrrlichtDevice *getDevice() const;
 		irr::scene::ISceneManager *getSceneManager() const;
 		irr::video::IVideoDriver *getDriver() const;

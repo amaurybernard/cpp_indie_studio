@@ -16,15 +16,10 @@ Engine::EventReceiver::EventReceiver(irr::IrrlichtDevice &device)
 bool Engine::EventReceiver::OnEvent(const irr::SEvent &event)
 {
 	if (event.EventType == irr::EET_KEY_INPUT_EVENT) {
-		if (event.KeyInput.PressedDown && _keysDown[event.KeyInput.Key] != true)
-			_keysDown[event.KeyInput.Key] = true;
+		if (event.KeyInput.PressedDown)
+			_keysDown[event.KeyInput.Key] = event.KeyInput.PressedDown;
 		if (event.KeyInput.Key == irr::KEY_ESCAPE && event.KeyInput.PressedDown)
 			_device.closeDevice();
-		if (event.KeyInput.Key == irr::KEY_SPACE && event.KeyInput.PressedDown) {
-			puts("Event: space is true");
-			_keysDown[irr::KEY_SPACE] = true;
-		} else if (event.KeyInput.Key == irr::KEY_SPACE)
-			puts("Event: space is false");
 	}
 	return false;
 }
@@ -43,5 +38,5 @@ void Engine::EventReceiver::resetKeysDown(void)
 
 void Engine::EventReceiver::update(void)
 {
-	//this->resetKeysDown();
+	this->resetKeysDown();
 }
