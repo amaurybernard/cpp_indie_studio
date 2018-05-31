@@ -5,13 +5,15 @@
 **      Created by Amaury Bernard, the 5/15/18, at 2:13 PM
 */
 
-#ifndef CPP_INDIE_STUDIO_CORE_HPP
-#define CPP_INDIE_STUDIO_CORE_HPP
+#ifndef ENGINE_HPP
+#define ENGINE_HPP
 #include <irrlicht/irrlicht.h>
+#include "EventReceiver.hpp"
 
 /** The Engine class keep all basic object needed by the graphical library */
 namespace Engine {
 	class Engine {
+	/* Public things: */
 	public:
 		Engine(irr::video::E_DRIVER_TYPE videoType
 		= irr::video::EDT_OPENGL,
@@ -19,18 +21,20 @@ namespace Engine {
 		= irr::core::dimension2d<irr::u32>(1920, 1080));
 		~Engine(void);
 
-	/* Public methods */
-	public:
+	public:	/* methods */
+		const EventReceiver &getEventReceiver() const;
 		irr::IrrlichtDevice *getDevice() const;
 		irr::scene::ISceneManager *getSceneManager() const;
 		irr::video::IVideoDriver *getDriver() const;
+		void 				update(void);
 
-		/* Private variables */
+	/* Private things */
 	private:
 		irr::IrrlichtDevice			*_device;
+		EventReceiver				_EventReceiver;
 		irr::video::IVideoDriver		*_driver;
 		irr::scene::ISceneManager		*_sceneManager;
 	};
 }
 
-#endif /* !CPP_INDIE_STUDIO_CORE_HPP*/
+#endif /* !ENGINE_HPP*/

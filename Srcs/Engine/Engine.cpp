@@ -10,8 +10,9 @@
 
 Engine::Engine::Engine(irr::video::E_DRIVER_TYPE videoType,
 irr::core::dimension2d<irr::u32> dimension2d)
+: _device(irr::createDevice(videoType, dimension2d)),
+_EventReceiver(EventReceiver(*_device))
 {
-	_device = irr::createDevice(videoType, dimension2d);
 	if (!_device) {
 		std::cerr << "Engine::Engine(): createDevice" << std::endl;
 		throw std::exception();
@@ -26,6 +27,7 @@ irr::core::dimension2d<irr::u32> dimension2d)
 		std::cerr << "Engine::Engine(): SceneManager" << std::endl ;
 		throw std::exception();
 	}
+	_device->setEventReceiver(&_EventReceiver);
 }
 
 Engine::Engine::~Engine(void)
@@ -46,4 +48,16 @@ irr::video::IVideoDriver *Engine::Engine::getDriver() const
 irr::scene::ISceneManager *Engine::Engine::getSceneManager() const
 {
 	return _sceneManager;
+}
+
+const Engine::EventReceiver &Engine::Engine::getEventReceiver() const
+{
+	return _EventReceiver;
+}
+
+void Engine::Engine::update(void)
+{
+	this->getSceneManager()->drawAll();
+	this->getDriver()->endScene();
+	_EventReceiver.update();
 }

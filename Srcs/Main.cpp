@@ -6,20 +6,24 @@
 */
 
 #include <irrlicht/irrlicht.h>
+#include "Engine/EventReceiver.hpp"
 #include "Engine/Engine.hpp"
+#include "Bomberman.hpp"
 
-//todo: load start menu
 int 	main(void)
 {
-	Engine::Engine	engine;
-	engine.getDevice()->setWindowCaption(L"BomberMan");
+	Engine::Engine		engine;
+	Engine::EventReceiver 	eventR = engine.getEventReceiver();
 
+	engine.getDevice()->setWindowCaption(L"BomberMan");
 	while(engine.getDevice()->run() && engine.getDriver()) {
+		if (eventR.isKeyDown(irr::KEY_SPACE)) {
+			puts("main: space is true");
+			//return (RT_FAILURE);
+		}
 		if (engine.getDevice()->isWindowActive()) {
-			engine.getDriver()->beginScene(true, true, irr::video::SColor(255,255,255,255));
-			engine.getSceneManager()->drawAll();
-			engine.getDriver()->endScene();
+			engine.update();
 		}
 	}
-	return (0);
+	return (RT_SUCCESS);
 }
