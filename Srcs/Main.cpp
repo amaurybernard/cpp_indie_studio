@@ -8,13 +8,15 @@
 #include <irrlicht/irrlicht.h>
 #include "Engine/EventReceiver.hpp"
 #include "Engine/Engine.hpp"
+#include "Renderer/Renderer.hpp"
 #include "Bomberman.hpp"
 
 int 	main(void)
 {
 	Engine::Engine		engine;
+	Renderer::Renderer	renderer(engine);
 
-	engine.getDevice()->setWindowCaption(L"BomberMan");
+	renderer.init();
 	while(engine.getDevice()->run() && engine.getDriver()) {
 		if (engine.getEventReceiver()->isKeyDown(irr::KEY_SPACE)) {
 			puts("main: space is true");
@@ -22,6 +24,7 @@ int 	main(void)
 		}
 		if (engine.getDevice()->isWindowActive()) {
 			engine.update();
+			renderer.render();
 		}
 	}
 	return (RT_SUCCESS);
