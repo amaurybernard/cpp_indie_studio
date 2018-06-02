@@ -4,12 +4,15 @@
 
 #include "Renderer/Renderer.hpp"
 #include <irrlicht/irrlicht.h>
+#include <unistd.h>
 
 namespace Renderer {
-	Renderer::Renderer(Engine::Engine &engine) : mEngine(engine)
-	{
-
-	}
+	Renderer::Renderer(Engine::Engine &engine) :
+		mEngine(engine),
+		mDevice(*engine.getDevice()),
+		mDriver(*engine.getDriver()),
+		mSceneMgr(*engine.getSceneManager())
+	{}
 
 	Engine::Engine &Renderer::getEngine() const
 	{
@@ -30,23 +33,28 @@ namespace Renderer {
 
 	void Renderer::render()
 	{
-		irr::video::IVideoDriver *driver;
-		irr::scene::ISceneManager *sceneMgr;
 		irr::video::SColor whiteColor(255,255,255,255);
-
-		driver = mEngine.getDriver();
-		sceneMgr = mEngine.getSceneManager();
-
-		driver->beginScene(true, true, whiteColor);
+		//sleep(1);
+		mDriver.beginScene(true, true, whiteColor);
+		mSceneMgr.drawAll();
+		mDriver.endScene();
 	}
 
 	void Renderer::init()
 	{
-		irr::IrrlichtDevice *device;
-
-		device = mEngine.getDevice();
-		device->setWindowCaption(L"BomberMan");
-		device->getCursorControl()->setVisible(false);
+		mDevice.setWindowCaption(L"BomberMan");
+		mSceneMgr.addCameraSceneNodeMaya();
+		for (int i = 0; i < 10; ++i) {
+			irr::scene::IMeshSceneNode *newCube =
+				mSceneMgr.addCubeSceneNode(
+					10.0f,
+					0,
+					-1,
+					irr::core::vector3df(0.0f, 0.0f, 20.0f + (10.0f * i))
+				);
+			newCube->setMaterialFlag(irr::video::EMF_WIREFRAME, true);
+		}
+		//mDevice.getCursorControl()->setVisible(false);
 	}
 }
 
