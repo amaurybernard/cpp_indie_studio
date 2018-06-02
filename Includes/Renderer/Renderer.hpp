@@ -32,6 +32,13 @@ namespace Renderer {
 		/* protected attribute */
 		protected:
 		Engine::Engine &mEngine;
+		irr::IrrlichtDevice &mDevice;
+		irr::video::IVideoDriver &mDriver;
+		irr::scene::ISceneManager &mSceneMgr;
 	};
+}
+
+namespace Renderer::Scene {
+	irr::scene::IMeshSceneNode *addCube(irr::scene::ISceneManager &);
 }
 #endif //RENDERER_HPP
