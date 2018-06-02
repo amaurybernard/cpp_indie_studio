@@ -23,7 +23,7 @@ int 	main(void)
 			//return (RT_FAILURE);
 		}
 		if (engine.getDevice()->isWindowActive()) {
-			engine.update();
+			//engine.update();
 			renderer.render();
 		}
 	}
