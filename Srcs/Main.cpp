@@ -12,17 +12,18 @@
 
 int 	main(void)
 {
-	Engine::Engine		engine;
+	Engine::Engine		*engine = Engine::Engine::instance();
 
-	engine.getDevice()->setWindowCaption(L"BomberMan");
-	while(engine.getDevice()->run() && engine.getDriver()) {
-		if (engine.getEventReceiver()->isKeyDown(irr::KEY_SPACE)) {
+	engine->getDevice()->setWindowCaption(L"BomberMan");
+	while(engine->getDevice()->run() && engine->getDriver()) {
+		if (engine->getEventReceiver()->isKeyDown(irr::KEY_SPACE)) {
 			puts("main: space is true");
 			//return (RT_FAILURE);
 		}
-		if (engine.getDevice()->isWindowActive()) {
-			engine.update();
+		if (engine->getDevice()->isWindowActive()) {
+			engine->update();
 		}
 	}
+	engine->drop();
 	return (RT_SUCCESS);
 }

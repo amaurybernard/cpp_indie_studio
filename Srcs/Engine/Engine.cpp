@@ -8,6 +8,8 @@
 #include <iostream>
 #include "Engine/Engine.hpp"
 
+extern Engine::Engine *Engine::Engine::_instance;
+
 Engine::Engine::Engine(irr::video::E_DRIVER_TYPE videoType,
 irr::core::dimension2d<irr::u32> dimension2d)
 : _device(irr::createDevice(videoType, dimension2d)),
@@ -60,4 +62,17 @@ void Engine::Engine::update(void)
 	this->getSceneManager()->drawAll();
 	this->getDriver()->endScene();
 	_EventReceiver.update();
+}
+
+
+Engine::Engine *Engine::Engine::instance(void)
+{
+	if (!_instance)
+		_instance = new Engine;
+	return (_instance);
+}
+
+void Engine::Engine::drop(void)
+{
+	delete(_instance);
 }

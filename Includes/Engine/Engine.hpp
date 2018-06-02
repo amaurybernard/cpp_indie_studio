@@ -13,22 +13,25 @@
 /** The Engine class keep all basic object needed by the graphical library */
 namespace Engine {
 	class Engine {
-	/* Public things: */
-	public:
+	private:
+		/* This is a singleton use Engine::Engine::instance() */
 		Engine(irr::video::E_DRIVER_TYPE videoType
 		= irr::video::EDT_OPENGL,
 		irr::core::dimension2d<irr::u32> dimension2d
 		= irr::core::dimension2d<irr::u32>(1920, 1080));
 		~Engine(void);
+		static Engine				*_instance;
 
 	public:	/* methods */
-		EventReceiver *getEventReceiver();
-		irr::IrrlichtDevice *getDevice() const;
-		irr::scene::ISceneManager *getSceneManager() const;
-		irr::video::IVideoDriver *getDriver() const;
+		static Engine 			*instance(void);
+		/* Usefull ? */
+		void	 			drop(void);
+		EventReceiver 			*getEventReceiver();
+		irr::IrrlichtDevice 		*getDevice() const;
+		irr::scene::ISceneManager 	*getSceneManager() const;
+		irr::video::IVideoDriver 	*getDriver() const;
 		void 				update(void);
 
-	/* Private things */
 	private:
 		irr::IrrlichtDevice			*_device;
 		EventReceiver				_EventReceiver;
