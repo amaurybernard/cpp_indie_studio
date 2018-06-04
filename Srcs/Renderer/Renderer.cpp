@@ -44,15 +44,16 @@ namespace Renderer {
 	{
 		mDevice.setWindowCaption(L"BomberMan");
 		mSceneMgr.addCameraSceneNodeMaya();
-		for (int i = 0; i < 10; ++i) {
-			irr::scene::IMeshSceneNode *newCube =
-				mSceneMgr.addCubeSceneNode(
-					10.0f,
-					0,
-					-1,
-					irr::core::vector3df(0.0f, 0.0f, 20.0f + (10.0f * i))
-				);
-			newCube->setMaterialFlag(irr::video::EMF_WIREFRAME, true);
+		for (int j = 0; j < 5; ++j) {
+			float y = 0.0f + (j * 10.0f);
+			for (int i = 0; i < 10; ++i) {
+				irr::scene::IMeshSceneNode *newCube = mSceneMgr.addCubeSceneNode(
+					10.0f, 0, -1,
+					irr::core::vector3df(y, 0.0f,
+						20.0f + (10.0f * i)));
+				newCube->setMaterialFlag(
+					irr::video::EMF_LIGHTING, true);
+			}
 		}
 		//mDevice.getCursorControl()->setVisible(false);
 	}
