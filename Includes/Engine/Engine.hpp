@@ -14,17 +14,15 @@
 namespace Engine {
 	class Engine {
 	private:
-		/* This is a singleton use Engine::Engine::instance() */
-		Engine(irr::video::E_DRIVER_TYPE videoType
-		= irr::video::EDT_OPENGL,
-		irr::core::dimension2d<irr::u32> dimension2d
-		= irr::core::dimension2d<irr::u32>(1920, 1080));
-		~Engine(void);
+		/** Use instance() instead */
+		Engine(void);
 		static Engine				*_instance;
+	public:
+		~Engine(void);
 
 	public:	/* methods */
 		static Engine 			*instance(void);
-		/* Usefull ? */
+		/* Useful ? */
 		void	 			drop(void);
 		EventReceiver 			*getEventReceiver();
 		irr::IrrlichtDevice 		*getDevice() const;
@@ -33,6 +31,10 @@ namespace Engine {
 		void 				update(void);
 
 	private:
+		static constexpr irr::video::E_DRIVER_TYPE _videoType
+		= irr::video::EDT_OPENGL;
+		static constexpr irr::u32 	_dimVertical = 1080;
+		static constexpr irr::u32	_dimHorizontal = 1920;
 		irr::IrrlichtDevice			*_device;
 		EventReceiver				_EventReceiver;
 		irr::video::IVideoDriver		*_driver;
