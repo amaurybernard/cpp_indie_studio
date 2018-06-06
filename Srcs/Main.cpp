@@ -10,9 +10,12 @@
 #include "Engine/Engine.hpp"
 #include "Bomberman.hpp"
 
+#include "Game/Map.hpp"
+
 int 	main(void)
 {
 	Engine::Engine		engine;
+	Game::Map		_map(MEDIUM);
 
 	engine.getDevice()->setWindowCaption(L"BomberMan");
 	while(engine.getDevice()->run() && engine.getDriver()) {
