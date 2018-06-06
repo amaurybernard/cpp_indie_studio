@@ -15,9 +15,11 @@
 int 	main(void)
 {
 	Engine::Engine		engine;
-	Game::Map		_map(MEDIUM);
+	Game::Map		map(MEDIUM);
 
-	_map.putMap();
+	map.addPlayer(1);
+	map.putMap();
+
 	engine.getDevice()->setWindowCaption(L"BomberMan");
 	while(engine.getDevice()->run() && engine.getDriver()) {
 		if (engine.getEventReceiver()->isKeyDown(irr::KEY_SPACE)) {

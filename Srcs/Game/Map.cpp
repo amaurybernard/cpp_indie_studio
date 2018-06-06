@@ -92,7 +92,23 @@ bool	Game::Map::breakBlock(size_t x, size_t y)
 {
 	if (_map[y][x] == 'X') {
 		_map[y][x] = ' ';
-		return (true);
+		return true;
 	}
-	return (false);
+	return false;
+}
+
+bool	Game::Map::addPlayer(size_t player_nb)
+{
+	switch (player_nb) {
+	case 1: _map[1][1] = '1';
+		break;
+	case 2: _map[1][_size] = '2';
+		break;
+	case 3: _map[_size][1] = '3';
+		break;
+	case 4: _map[_size][_size] = '4';
+		break;
+	default: return false;
+	}
+	return true;
 }
