@@ -5,8 +5,10 @@
 // Created by Hadrien Mortier, on 5 June 2018
 //
 
-#include <string>
 #include <irrlicht/irrlicht.h>
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
 #include "Game/Map.hpp"
 #include "Bomberman.hpp"
 
@@ -14,6 +16,8 @@ Game::Map::Map(size_t size)
 	: _size(size)
 {
 	createMap();
+	generateBlocks(DENSITY_MEDIUM);
+	_tmp = _map;
 }
 
 Game::Map::~Map()
@@ -21,8 +25,10 @@ Game::Map::~Map()
 	size_t y = 0;
 	for (y = 1 ; y <= _size ; y++) {
 		_map[y].clear();
+		_tmp[y].clear();
 	}
 	_map.clear();
+	_tmp.clear();
 }
 
 void Game::Map::createMap()
@@ -33,17 +39,60 @@ void Game::Map::createMap()
 	_map[0].append(_size + 2, '#');
 	for (y = 1 ; y <= _size ; y++) {
 		_map[y].push_back('#');
-		x = 1;
-		while (x <= _size) {
+		for (x = 1 ; x <= _size ; x++) {
 			if ((y % 2 == 0) && (x % 2 == 0))
 				_map[y].push_back('#');
 			else
 				_map[y].push_back(' ');
-			x++;
 		}
 		_map[y].push_back('#');
 	}
 	_map[_size + 1].append(_size + 2, '#');
+}
+
+void	Game::Map::generateBlocks(size_t density)
+{
+	size_t x = 1;
+	size_t y = 1;
+	size_t nb = 0;
+	srand((unsigned)time(0));
+	for (y = 1 ; y <= _size ; y++) {
+		for (x = 1 ; x <= _size ; x++) {
+			if (!((((y == 1) || (y == _size)) &&
+			       ((x <= 3) || (x >= _size - 2))) ||
+			      (((x == 1) || (x == _size)) &&
+			       ((y <= 3) || (y >= _size - 2)))) &&
+			    (_map[y][x] == ' ')) {
+				nb = (rand()%20)+1; 
+				if (nb % density != 0 )
+					_map[y][x] = 'X';
+			}
+		}
+	}
+}
+
+void	Game::Map::resetMap()
+{
+	_map = _tmp;
+}
+
+std::vector<std::string>	Game::Map::getMap()
+{
+	return (_map);
+}
+
+void	Game::Map::putMap()
+{
+	size_t y = 0;
 	for (y = 0 ; y <= _size + 1 ; y++)
 		puts(_map[y].c_str());
+}
+
+bool	Game::Map::breakBlock(size_t x, size_t y)
+{
+	if (_map[y][x] == 'X') {
+		_map[y][x] = ' ';
+		return (true);
+	}
+	return (false);
 }
