@@ -10,14 +10,19 @@
 #include "Engine/Engine.hpp"
 #include "Bomberman.hpp"
 
+#include "Game/Character.hpp"
 #include "Game/Map.hpp"
 
 int 	main(void)
 {
 	Engine::Engine		engine;
-	Game::Map		map(MEDIUM);
+	size_t			mapSize = MEDIUM;
+	Game::Map		map(mapSize);
+	Game::Character		player1(map, 1, mapSize);
+	Game::Character		player2(map, 2, mapSize);
+	Game::Character		player3(map, 3, mapSize);
+	Game::Character		player4(map, 4, mapSize);
 
-	map.addPlayer(1);
 	map.putMap();
 
 	engine.getDevice()->setWindowCaption(L"BomberMan");

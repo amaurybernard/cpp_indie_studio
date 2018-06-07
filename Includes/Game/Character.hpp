@@ -9,6 +9,7 @@
 #define CHARACTER_HPP
 
 #include <irrlicht/irrlicht.h>
+#include "Game/Map.hpp"
 
 #define DEFAULT_HP 100
 
@@ -16,15 +17,15 @@ namespace Game {
 	class Character {
 
 	public:
-		Character(unsigned int nb);
+		Character(Game::Map &map, size_t nb, size_t mapSize);
 		~Character();
 		
 	protected:
-		unsigned int	_x;	// X Position
-		unsigned int	_y;	// Y Position
-		unsigned int	_nb;	// Player number
-		unsigned int	_hp;	// Health Points
-		char    _player;	// Player symbol
+		Map		_map;	// Playing map
+		size_t		_nb;	// Player number
+		size_t		_x;	// X Position
+		size_t		_y;	// Y Position
+		size_t		_hp;	// Health Points
 	};
 }
 

@@ -112,3 +112,9 @@ bool	Game::Map::addPlayer(size_t player_nb)
 	}
 	return true;
 }
+
+bool Game::Map::addPlayer(size_t x, size_t y, size_t player_nb)
+{
+	_map[y][x] = player_nb + 48;
+	return true;
+}

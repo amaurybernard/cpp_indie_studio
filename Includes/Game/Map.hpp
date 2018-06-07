@@ -36,6 +36,7 @@ namespace Game {
 		void putMap();
 		bool breakBlock(size_t x, size_t y);
 		bool addPlayer(size_t player_nb);
+		bool addPlayer(size_t x, size_t y, size_t player_nb);
 	private:
 		size_t				_size;
 		std::vector<std::string>	_map;
