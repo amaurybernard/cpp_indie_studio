@@ -19,9 +19,12 @@ namespace Game {
 	public:
 		Character(Game::Map &map, size_t nb, size_t mapSize);
 		~Character();
-		
+		bool moveUp();
+		bool moveDown();
+		bool moveRight();
+		bool moveLeft();
 	protected:
-		Map		_map;	// Playing map
+		Map		&_map;	// Playing map
 		size_t		_nb;	// Player number
 		size_t		_x;	// X Position
 		size_t		_y;	// Y Position

@@ -34,6 +34,8 @@ namespace Game {
 		void resetMap();
 		std::vector<std::string> getMap();
 		void putMap();
+		bool isBlocked(size_t x, size_t y);
+		bool moveCharacter(size_t player_nb, size_t x1, size_t y1, size_t x2, size_t y2);
 		bool breakBlock(size_t x, size_t y);
 		bool addPlayer(size_t player_nb);
 		bool addPlayer(size_t x, size_t y, size_t player_nb);

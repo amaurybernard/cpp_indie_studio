@@ -88,6 +88,23 @@ void	Game::Map::putMap()
 		puts(_map[y].c_str());
 }
 
+bool	Game::Map::isBlocked(size_t x, size_t y)
+{
+	if (_map[y][x] == ' ')
+		return false;
+	return true;
+}
+
+bool	Game::Map::moveCharacter(size_t player_nb, size_t x1, size_t y1, size_t x2, size_t y2)
+{
+	if (!isBlocked(x2, y2)) {	
+		_map[y1][x1] = ' ';
+		_map[y2][x2] = player_nb + 48;
+		return true;
+	}
+	return false;
+}
+
 bool	Game::Map::breakBlock(size_t x, size_t y)
 {
 	if (_map[y][x] == 'X') {

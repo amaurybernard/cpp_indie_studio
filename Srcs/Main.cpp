@@ -23,14 +23,25 @@ int 	main(void)
 	Game::Character		player3(map, 3, mapSize);
 	Game::Character		player4(map, 4, mapSize);
 
-	map.putMap();
-
 	engine.getDevice()->setWindowCaption(L"BomberMan");
 	while(engine.getDevice()->run() && engine.getDriver()) {
 		if (engine.getEventReceiver()->isKeyDown(irr::KEY_SPACE)) {
 			puts("main: space is true");
 			//return (RT_FAILURE);
 		}
+
+		
+		map.putMap();
+		if (engine.getEventReceiver()->isKeyDown(irr::KEY_UP))
+			player1.moveUp();
+		else if (engine.getEventReceiver()->isKeyDown(irr::KEY_DOWN))
+			player1.moveDown();
+		else if (engine.getEventReceiver()->isKeyDown(irr::KEY_RIGHT))
+			player1.moveRight();
+		else if (engine.getEventReceiver()->isKeyDown(irr::KEY_LEFT))
+			player1.moveLeft();
+
+
 		if (engine.getDevice()->isWindowActive()) {
 			engine.update();
 		}
