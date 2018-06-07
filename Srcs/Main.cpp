@@ -5,6 +5,8 @@
 **      Created by Amaury Bernard, the 5/15/18, at 2:13 PM
 */
 
+#include <vector>
+#include <string>
 #include <irrlicht/irrlicht.h>
 #include "Engine/EventReceiver.hpp"
 #include "Engine/Engine.hpp"
@@ -24,6 +26,7 @@ int 	main(void)
 			engine->update();
 		}
 	}
+	engine->saveGame(std::vector<std::string>());
 	engine->drop();
 	return (RT_SUCCESS);
 }

@@ -29,12 +29,14 @@ namespace Engine {
 		irr::scene::ISceneManager 	*getSceneManager() const;
 		irr::video::IVideoDriver 	*getDriver() const;
 		void 				update(void);
+		/* @Return true in case of error */
+		bool saveGame(const std::vector<std::string> map, std::string name = "");
 
 	private:
 		static constexpr irr::video::E_DRIVER_TYPE _videoType
 		= irr::video::EDT_OPENGL;
-		static constexpr irr::u32 	_dimVertical = 1080;
-		static constexpr irr::u32	_dimHorizontal = 1920;
+		static constexpr irr::u32 		_dimVertical = 1080;
+		static constexpr irr::u32		_dimHorizontal = 1920;
 		irr::IrrlichtDevice			*_device;
 		EventReceiver				_EventReceiver;
 		irr::video::IVideoDriver		*_driver;
@@ -42,4 +44,4 @@ namespace Engine {
 	};
 }
 
-#endif /* !ENGINE_HPP*/
+#endif /* !ENGINE_HPP */

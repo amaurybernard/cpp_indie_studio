@@ -36,3 +36,9 @@ std::string FileSystem::Path::getName(void) const
 		return _path;
 	return std::string(_path, first + 1, _path.length());
 }
+
+bool FileSystem::Path::isDirectory(void) const
+{
+
+	return false;
+}

@@ -19,6 +19,7 @@ namespace FileSystem {
 
 	public:
 		bool 		isFile(void) const;
+		bool 		isDirectory(void) const;
 		std::string getName(void) const;
 
 	protected:

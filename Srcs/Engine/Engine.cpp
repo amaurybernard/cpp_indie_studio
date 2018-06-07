@@ -6,6 +6,8 @@
 */
 
 #include <iostream>
+#include <ctime>
+#include <FileSystem/Directory.hpp>
 #include "Engine/Engine.hpp"
 
 extern Engine::Engine *Engine::Engine::_instance;
@@ -75,4 +77,15 @@ Engine::Engine *Engine::Engine::instance(void)
 void Engine::Engine::drop(void)
 {
 	delete(_instance);
+}
+
+bool Engine::Engine::saveGame(const std::vector<std::string> map, std::string name)
+{
+	if (name.empty())
+		name = std::to_string(std::time(nullptr));
+
+	if (!FileSystem::Directory())
+	puts(name.c_str());
+	(void)map;
+	return false;
 }
