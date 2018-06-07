@@ -7,14 +7,15 @@
 
 #include <iostream>
 #include <ctime>
-#include <FileSystem/Directory.hpp>
+#include "FileSystem/File.hpp"
+#include "FileSystem/Directory.hpp"
 #include "Engine/Engine.hpp"
 
 extern Engine::Engine *Engine::Engine::_instance;
 
 Engine::Engine::Engine(void)
-: _device(irr::createDevice(_videoType,
-irr::core::dimension2d<irr::u32>(_dimHorizontal, _dimVertical))),
+: _device(irr::createDevice(VIDEO_TYPE,
+irr::core::dimension2d<irr::u32>(DIM_HORIZONTAL, DIM_VERTICAL))),
 _EventReceiver(EventReceiver(*_device))
 {
 	if (!_device) {
@@ -83,9 +84,12 @@ bool Engine::Engine::saveGame(const std::vector<std::string> map, std::string na
 {
 	if (name.empty())
 		name = std::to_string(std::time(nullptr));
-
-	if (!FileSystem::Directory())
-	puts(name.c_str());
+	FileSystem::Directory dir((char *)Engine::Engine::SAVEDGAMES_DIR);
+	if (!dir.exist()) {
+		dir.create();
+	}
+	//FileSystem::File file(dir.getAbsolutePath() + name); todo find exception
+	//file.create();
 	(void)map;
 	return false;
 }

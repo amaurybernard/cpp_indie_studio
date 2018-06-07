@@ -33,10 +33,11 @@ namespace Engine {
 		bool saveGame(const std::vector<std::string> map, std::string name = "");
 
 	private:
-		static constexpr irr::video::E_DRIVER_TYPE _videoType
+		static constexpr irr::video::E_DRIVER_TYPE VIDEO_TYPE
 		= irr::video::EDT_OPENGL;
-		static constexpr irr::u32 		_dimVertical = 1080;
-		static constexpr irr::u32		_dimHorizontal = 1920;
+		static constexpr irr::u32 		DIM_VERTICAL = 1080;
+		static constexpr irr::u32		DIM_HORIZONTAL = 1920;
+		static constexpr char	SAVEDGAMES_DIR[] = "SavedGames/";
 		irr::IrrlichtDevice			*_device;
 		EventReceiver				_EventReceiver;
 		irr::video::IVideoDriver		*_driver;

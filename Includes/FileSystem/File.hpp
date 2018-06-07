@@ -5,8 +5,8 @@
 **      Created by Amaury Bernard, the 30/03/18, at 17:59
 */
 
-#ifndef CPP_ARCADE_FILE_HPP
-#define CPP_ARCADE_FILE_HPP
+#ifndef FS_FILE_HPP
+#define FS_FILE_HPP
 
 #include "FileSystem/Path.hpp"
 /*
@@ -17,13 +17,14 @@ namespace FileSystem {
 
 	class File : public Path {
 	public:
-		File(void) = default;
 		File(const std::string &path);
-		File(Path &path);
+		File(const Path &path);
 
 	public:
-		bool	hasExtension(const std::string &find = nullptr) const;
+		bool			hasExtension(const std::string &find = nullptr) const;
+		void 		create(void) final;
+		bool 		exist(void) final;
 	};
 }
 
-#endif /* !CPP_ARCADE_FILE_HPP*/
+#endif /* !FS_FILE_HPP*/
