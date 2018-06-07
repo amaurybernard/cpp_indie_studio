@@ -11,11 +11,10 @@
 #include <irrlicht/irrlicht.h>
 #include "Game/Map.hpp"
 
-#define DEFAULT_HP 100
+constexpr unsigned DEFAULT_HP = 100;
 
 namespace Game {
 	class Character {
-
 	public:
 		Character(Game::Map &map, size_t nb, size_t mapSize);
 		~Character();

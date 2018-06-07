@@ -1,9 +1,9 @@
-//
-// EPITECH PROJECT, 2018
-// Indie Studio - Game - Map
-// File description:
-// Created by Hadrien Mortier on 5 June 2018
-//
+/*
+** EPITECH PROJECT, 2018
+** Indie Studio - Game - Map
+** File description:
+** Created by Hadrien Mortier on 5 June 2018
+*/
 
 
 #ifndef MAP_HPP
@@ -13,15 +13,15 @@
 #include <string>
 
 // Map's Size
-#define SMALL 9
-#define MEDIUM 13 // By default
-#define BIG 17
+constexpr unsigned SMALL = 9;
+constexpr unsigned MEDIUM = 13; // By default
+constexpr unsigned BIG = 17;
 
 // Density of destructibles Blocks
-#define DENSITY_LOW 3
-#define DENSITY_MEDIUM 5
-#define DENSITY_HIGH 8
-#define DENSITY_MAX 11
+constexpr unsigned DENSITY_LOW = 3;
+constexpr unsigned DENSITY_MEDIUM = 5;
+constexpr unsigned DENSITY_HIGH = 8;
+constexpr unsigned DENSITY_MAX = 11;
 
 namespace Game {
 	class Map {
