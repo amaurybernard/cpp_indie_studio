@@ -5,6 +5,8 @@
 **      Created by Amaury Bernard, the 5/15/18, at 2:13 PM
 */
 
+#include <vector>
+#include <string>
 #include <irrlicht/irrlicht.h>
 #include "Engine/EventReceiver.hpp"
 #include "Engine/Engine.hpp"
@@ -13,19 +15,21 @@
 
 int 	main(void)
 {
-	Engine::Engine		engine;
-	RR::Renderer	renderer(engine);
+	Engine::Engine		*engine = Engine::Engine::instance();
+	RR::Renderer		renderer(*engine);
 
 	renderer.init();
-	while(engine.getDevice()->run() && engine.getDriver()) {
-		if (engine.getEventReceiver()->isKeyDown(irr::KEY_SPACE)) {
+	while(engine->getDevice()->run() && engine->getDriver()) {
+		if (engine->getEventReceiver()->isKeyDown(irr::KEY_SPACE)) {
 			puts("main: space is true");
 			//return (RT_FAILURE);
 		}
-		if (engine.getDevice()->isWindowActive()) {
-			//engine.update();
+		if (engine->getDevice()->isWindowActive()) {
+			engine->update();
 			renderer.render();
 		}
 	}
+	engine->saveGame(std::vector<std::string>());
+	engine->drop();
 	return (RT_SUCCESS);
 }

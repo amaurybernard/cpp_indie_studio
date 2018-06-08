@@ -6,11 +6,16 @@
 */
 
 #include <iostream>
+#include <ctime>
+#include "FileSystem/File.hpp"
+#include "FileSystem/Directory.hpp"
 #include "Engine/Engine.hpp"
 
-Engine::Engine::Engine(irr::video::E_DRIVER_TYPE videoType,
-irr::core::dimension2d<irr::u32> dimension2d)
-: _device(irr::createDevice(videoType, dimension2d)),
+extern Engine::Engine *Engine::Engine::_instance;
+
+Engine::Engine::Engine(void)
+: _device(irr::createDevice(VIDEO_TYPE,
+irr::core::dimension2d<irr::u32>(DIM_HORIZONTAL, DIM_VERTICAL))),
 _EventReceiver(EventReceiver(*_device))
 {
 	if (!_device) {
@@ -57,7 +62,32 @@ Engine::EventReceiver *Engine::Engine::getEventReceiver()
 
 void Engine::Engine::update(void)
 {
-	this->getSceneManager()->drawAll();
-	this->getDriver()->endScene();
 	_EventReceiver.update();
+}
+
+
+Engine::Engine *Engine::Engine::instance(void)
+{
+	if (!_instance)
+		_instance = new Engine;
+	return (_instance);
+}
+
+void Engine::Engine::drop(void)
+{
+	delete(_instance);
+}
+
+bool Engine::Engine::saveGame(const std::vector<std::string> map, std::string name)
+{
+	if (name.empty())
+		name = std::to_string(std::time(nullptr));
+	FileSystem::Directory dir((char *)Engine::Engine::SAVEDGAMES_DIR);
+	if (!dir.exist()) {
+		dir.create();
+	}
+	//FileSystem::File file(dir.getAbsolutePath() + name); todo find exception
+	//file.create();
+	(void)map;
+	return false;
 }
