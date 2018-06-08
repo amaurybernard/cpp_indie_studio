@@ -43,8 +43,8 @@ namespace RR {
 	{
 		mDevice.setWindowCaption(L"BomberMan");
 		mSceneMgr.addCameraSceneNodeMaya();
-		mSceneMgr.addLightSceneNode(0, irr::core::vector3df(-15,5,-105),
-			irr::video::SColorf(1.0f, 1.0f, 1.0f));
+		//mSceneMgr.addLightSceneNode(0, irr::core::vector3df(50,5,50),
+			//irr::video::SColorf(1.0f, 1.0f, 1.0f));
 		mSceneMgr.setAmbientLight(irr::video::SColor(0,60,60,60));
 		for (int j = 0; j < 10; ++j) {
 			float z = 0.0f + (j * 10.0f);
