@@ -24,7 +24,7 @@ namespace RR {
 					position
 				);
 			//std::string path = irr::io::IFileSystem::getWorkingDirectory();
-			newCube->setMaterialTexture(0, driver.getTexture("../mapBlock.jpg"));
+			newCube->setMaterialTexture(0, driver.getTexture("./mapBlock.jpg"));
 			newCube->setMaterialFlag(irr::video::EMF_LIGHTING,
 				false);
 			return newCube;
@@ -44,7 +44,7 @@ namespace RR {
 					position
 				);
 			//std::string path = irr::io::IFileSystem::getWorkingDirectory();
-			newCube->setMaterialTexture(0, driver.getTexture("../breakableBlock.png"));
+			newCube->setMaterialTexture(0, driver.getTexture("./breakableBlock.png"));
 			newCube->setMaterialFlag(irr::video::EMF_LIGHTING,
 				false);
 			return newCube;
