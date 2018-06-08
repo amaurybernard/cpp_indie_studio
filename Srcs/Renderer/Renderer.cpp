@@ -34,7 +34,6 @@ namespace RR {
 	void Renderer::render()
 	{
 		irr::video::SColor whiteColor(255,86,126,255);
-		//sleep(1);
 		mDriver.beginScene(true, true, whiteColor);
 		mSceneMgr.drawAll();
 		mDriver.endScene();
@@ -61,7 +60,8 @@ namespace RR {
 				float x = 0.0f + (i * 10.0f);
 				irr::core::vector3df pos(x,10.0f,z);
 				if ((i % 2) == 0)
-					Scene::addBreakableCube(mSceneMgr, mDriver, pos);
+					Scene::addBreakableCube(mSceneMgr,
+						mDriver, pos);
 			}
 		}
 		//mDevice.getCursorControl()->setVisible(false);

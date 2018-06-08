@@ -20,10 +20,6 @@ int 	main(void)
 
 	renderer.init();
 	while(engine->getDevice()->run() && engine->getDriver()) {
-		if (engine->getEventReceiver()->isKeyDown(irr::KEY_SPACE)) {
-			puts("main: space is true");
-			//return (RT_FAILURE);
-		}
 		if (engine->getDevice()->isWindowActive()) {
 			engine->update();
 			renderer.render();
