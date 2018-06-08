@@ -6,7 +6,7 @@
 */
 
 #include <string>
-#include <irr/irrlicht.h>
+#include <irrlicht/irrlicht.h>
 
 namespace RR {
 	namespace Scene {
