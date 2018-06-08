@@ -14,7 +14,7 @@
 int 	main(void)
 {
 	Engine::Engine		engine;
-	Renderer::Renderer	renderer(engine);
+	RR::Renderer	renderer(engine);
 
 	renderer.init();
 	while(engine.getDevice()->run() && engine.getDriver()) {

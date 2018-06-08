@@ -6,7 +6,7 @@
 #include <irrlicht/irrlicht.h>
 #include <unistd.h>
 
-namespace Renderer {
+namespace RR {
 	Renderer::Renderer(Engine::Engine &engine) :
 		mEngine(engine),
 		mDevice(*engine.getDevice()),
@@ -33,7 +33,7 @@ namespace Renderer {
 
 	void Renderer::render()
 	{
-		irr::video::SColor whiteColor(255,255,255,255);
+		irr::video::SColor whiteColor(255,86,126,255);
 		//sleep(1);
 		mDriver.beginScene(true, true, whiteColor);
 		mSceneMgr.drawAll();
@@ -44,15 +44,24 @@ namespace Renderer {
 	{
 		mDevice.setWindowCaption(L"BomberMan");
 		mSceneMgr.addCameraSceneNodeMaya();
-		for (int j = 0; j < 5; ++j) {
-			float y = 0.0f + (j * 10.0f);
+		mSceneMgr.addLightSceneNode(0, irr::core::vector3df(-15,5,-105),
+			irr::video::SColorf(1.0f, 1.0f, 1.0f));
+		mSceneMgr.setAmbientLight(irr::video::SColor(0,60,60,60));
+		for (int j = 0; j < 10; ++j) {
+			float z = 0.0f + (j * 10.0f);
 			for (int i = 0; i < 10; ++i) {
-				irr::scene::IMeshSceneNode *newCube = mSceneMgr.addCubeSceneNode(
-					10.0f, 0, -1,
-					irr::core::vector3df(y, 0.0f,
-						20.0f + (10.0f * i)));
-				newCube->setMaterialFlag(
-					irr::video::EMF_LIGHTING, true);
+				float x = 0.0f + (i * 10.0f);
+				irr::core::vector3df pos(x,0.0f,z);
+				Scene::addMapCube(mSceneMgr, mDriver, pos);
+			}
+		}
+		for (int j = 0; j < 10; ++j) {
+			float z = 0.0f + (j * 10.0f);
+			for (int i = 0; i < 10; ++i) {
+				float x = 0.0f + (i * 10.0f);
+				irr::core::vector3df pos(x,10.0f,z);
+				if ((i % 2) == 0)
+					Scene::addBreakableCube(mSceneMgr, mDriver, pos);
 			}
 		}
 		//mDevice.getCursorControl()->setVisible(false);

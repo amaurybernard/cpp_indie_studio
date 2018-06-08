@@ -8,7 +8,7 @@
 #include <irrlicht/irrlicht.h>
 #include "Engine/Engine.hpp"
 
-namespace Renderer {
+namespace RR {
 	class Renderer {
 		/* Constructor and destructor */
 		public:
@@ -36,9 +36,19 @@ namespace Renderer {
 		irr::video::IVideoDriver &mDriver;
 		irr::scene::ISceneManager &mSceneMgr;
 	};
-}
 
-namespace Renderer::Scene {
-	irr::scene::IMeshSceneNode *addCube(irr::scene::ISceneManager &);
+	namespace Scene {
+		irr::scene::IMeshSceneNode *addMapCube(
+			irr::scene::ISceneManager &,
+			irr::video::IVideoDriver &,
+			irr::core::vector3df &
+		);
+
+		irr::scene::IMeshSceneNode *addBreakableCube(
+			irr::scene::ISceneManager &,
+			irr::video::IVideoDriver &,
+			irr::core::vector3df &
+		);
+	}
 }
 #endif //RENDERER_HPP

@@ -26,7 +26,7 @@ file(
         ${INCS_DIR}*.hpp
 )
 
-add_executable(bomberman ${SRCS} ${INCS} Includes/Renderer/Renderer.hpp Srcs/Renderer/Renderer.cpp Srcs/Renderer/cursor.cpp)
+add_executable(bomberman ${SRCS} ${INCS} Includes/Renderer/Renderer.hpp Srcs/Renderer/Renderer.cpp Srcs/Renderer/cursor.cpp Srcs/Renderer/assets.cpp)
 
 target_link_libraries(bomberman Irrlicht)
 target_link_libraries(bomberman GL)

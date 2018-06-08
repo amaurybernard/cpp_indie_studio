@@ -2,7 +2,7 @@
 // Created by artha on 02.06.18.
 //
 
-namespace Renderer {
+namespace RR {
 	//void renderCursor
 }
 
