@@ -13,10 +13,19 @@
 #include "Renderer/Renderer.hpp"
 #include "Bomberman.hpp"
 
+#include "Game/Character.hpp"
+#include "Game/Map.hpp"
+
 int 	main(void)
 {
 	Engine::Engine		*engine = Engine::Engine::instance();
 	RR::Renderer		renderer(*engine);
+	size_t			mapSize = MEDIUM;
+	Game::Map		map(mapSize);
+	Game::Character		player1(map, 1, mapSize);
+	Game::Character		player2(map, 2, mapSize);
+	Game::Character		player3(map, 3, mapSize);
+	Game::Character		player4(map, 4, mapSize);
 
 	renderer.init();
 	while(engine->getDevice()->run() && engine->getDriver()) {
@@ -24,8 +33,16 @@ int 	main(void)
 			engine->update();
 			renderer.render();
 		}
+		map.putMap();
+		if (engine->getEventReceiver()->isKeyDown(irr::KEY_UP))
+			player1.moveUp();
+		else if (engine->getEventReceiver()->isKeyDown(irr::KEY_DOWN))
+			player1.moveDown();
+		else if (engine->getEventReceiver()->isKeyDown(irr::KEY_RIGHT))
+			player1.moveRight();
+		else if (engine->getEventReceiver()->isKeyDown(irr::KEY_LEFT))
+			player1.moveLeft();
 	}
-	engine->saveGame(std::vector<std::string>());
 	engine->drop();
 	return (RT_SUCCESS);
 }

@@ -1,0 +1,72 @@
+//
+// EPITECH PROJECT, 2018
+// Indie Studio - Game - Character
+// File description:
+// Created by Hadrien Mortier, on 5 June 2018
+//
+
+#include <vector>
+#include <string>
+#include <irrlicht/irrlicht.h>
+#include "Game/Character.hpp"
+#include "Bomberman.hpp"
+
+Game::Character::Character(Game::Map &map, size_t nb, size_t mapSize)
+	: _map(map), _nb(nb), _hp(DEFAULT_HP)
+{
+	switch (nb) {
+        case 1: _x = 1;
+		_y = 1;
+	        break;
+        case 2: _x = mapSize;
+		_y = 1;
+                break;
+        case 3: _x = 1;
+		_y = mapSize;
+		break;
+        case 4: _x = mapSize;
+		_y = mapSize;
+                break;
+        }
+	_map.addPlayer(_x, _y, nb);
+}
+
+Game::Character::~Character()
+{
+}
+
+bool Game::Character::moveUp()
+{
+	if (_map.moveCharacter(_nb, _x, _y, _x, (_y - 1))) {
+		_y -= 1;
+		return true;
+	}
+	return false;
+}
+
+bool Game::Character::moveDown()
+{
+	if (_map.moveCharacter(_nb, _x, _y, _x, (_y + 1))) {
+		_y += 1;
+		return true;
+	}
+	return false;
+}
+
+bool Game::Character::moveRight()
+{
+	if (_map.moveCharacter(_nb, _x, _y, (_x + 1), _y)) {
+		_x += 1;
+		return true;
+	}
+	return false;
+}
+
+bool Game::Character::moveLeft()
+{
+	if (_map.moveCharacter(_nb, _x, _y, (_x - 1), _y)) {
+		_x -= 1;
+		return true;
+	}
+	return false;
+}
