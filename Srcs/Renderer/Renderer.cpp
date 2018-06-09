@@ -11,8 +11,13 @@ namespace RR {
 		mEngine(engine),
 		mDevice(*engine.getDevice()),
 		mDriver(*engine.getDriver()),
-		mSceneMgr(*engine.getSceneManager())
-	{}
+		mSceneMgr(*engine.getSceneManager()),
+		mBackColor(irr::video::SColor(255,86,126,255)),
+		mBoxNode(nullptr)
+	{
+		mSceneMgr.addEmptySceneNode(nullptr, 1);
+		mBoxNode = mSceneMgr.getSceneNodeFromId(1, nullptr);
+	}
 
 	Engine::Engine &Renderer::getEngine() const
 	{
@@ -33,38 +38,31 @@ namespace RR {
 
 	void Renderer::render()
 	{
-		irr::video::SColor whiteColor(255,86,126,255);
-		mDriver.beginScene(true, true, whiteColor);
+		mDriver.beginScene(true, true, mBackColor);
 		mSceneMgr.drawAll();
 		mDriver.endScene();
 	}
 
-	void Renderer::init()
+	void Renderer::render(Game::Map &map, size_t size)
 	{
+		std::vector<std::string> rawMap = map.getMap();
+
+		mBoxNode->removeAll();
+		RR::Scene::spawnBox(rawMap, size + 2, mBoxNode);
+		mDriver.beginScene(true, true, mBackColor);
+		mSceneMgr.drawAll();
+		mDriver.endScene();
+	}
+
+	void Renderer::init(Game::Map &map,  size_t mapSize)
+	{
+		std::vector<std::string> rawMap = map.getMap();
 		mDevice.setWindowCaption(L"BomberMan");
-		mSceneMgr.addCameraSceneNodeMaya();
-		//mSceneMgr.addLightSceneNode(0, irr::core::vector3df(50,5,50),
-			//irr::video::SColorf(1.0f, 1.0f, 1.0f));
-		mSceneMgr.setAmbientLight(irr::video::SColor(0,60,60,60));
-		for (int j = 0; j < 10; ++j) {
-			float z = 0.0f + (j * 10.0f);
-			for (int i = 0; i < 10; ++i) {
-				float x = 0.0f + (i * 10.0f);
-				irr::core::vector3df pos(x,0.0f,z);
-				Scene::addMapCube(mSceneMgr, mDriver, pos);
-			}
-		}
-		for (int j = 0; j < 10; ++j) {
-			float z = 0.0f + (j * 10.0f);
-			for (int i = 0; i < 10; ++i) {
-				float x = 0.0f + (i * 10.0f);
-				irr::core::vector3df pos(x,10.0f,z);
-				if ((i % 2) == 0)
-					Scene::addBreakableCube(mSceneMgr,
-						mDriver, pos);
-			}
-		}
-		//mDevice.getCursorControl()->setVisible(false);
+		RR::Scene::setBaseLight();
+		RR::Scene::setBaseCamera();
+		RR::Scene::spawnGround(mapSize + 2);
+		RR::Scene::spawnWall(rawMap, mapSize + 2);
+		RR::Scene::spawnBox(rawMap, mapSize + 2, mBoxNode);
 	}
 }
 

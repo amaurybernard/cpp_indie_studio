@@ -27,11 +27,11 @@ int 	main(void)
 	Game::Character		player3(map, 3, mapSize);
 	Game::Character		player4(map, 4, mapSize);
 
-	renderer.init();
+	renderer.init(map, mapSize);
 	while(engine->getDevice()->run() && engine->getDriver()) {
 		if (engine->getDevice()->isWindowActive()) {
 			engine->update();
-			renderer.render();
+			renderer.render(map, mapSize);
 		}
 		map.putMap();
 		if (engine->getEventReceiver()->isKeyDown(irr::KEY_UP))
