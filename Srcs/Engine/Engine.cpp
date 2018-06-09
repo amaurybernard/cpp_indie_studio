@@ -74,20 +74,22 @@ void Engine::Engine::drop(void)
 	delete(_instance);
 }
 
-bool Engine::Engine::saveGame(const std::vector<std::string> map, std::string name)
+void Engine::Engine::saveGame(const std::vector<std::string> map,
+std::string gameName)
 {
-	if (name.empty())
-		name = std::to_string(std::time(nullptr));
+	std::string filename = std::to_string(std::time(nullptr));
+	if (gameName.empty())
+		gameName = filename;
 	FileSystem::Directory dir((char *)Engine::Engine::SAVEDGAMES_DIR);
 	if (!dir.exist()) {
 		dir.create();
 	}
-	FileSystem::File file(dir.getAbsolutePath() + name);
+	FileSystem::File file(dir.getAbsolutePath() + filename);
+	file.write(gameName + std::string("\n"));
 	file.write(std::to_string(map.size()) + std::string("\n"));
 	for (auto line : map) {
 		file.write(line + std::string("\n"));
 	}
-	return false;
 }
 
 bool Engine::Engine::keepLooping(void)
