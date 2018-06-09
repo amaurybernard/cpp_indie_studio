@@ -27,22 +27,22 @@ int 	main(void)
 	Game::Character		player3(map, 3, mapSize);
 	Game::Character		player4(map, 4, mapSize);
 
-	renderer.init();
+	renderer.init(map, mapSize);
 	while(engine->keepLooping()) {
 		if (engine->getDevice()->isWindowActive()) {
-			renderer.render();
+			renderer.render(map, mapSize);
 		}
 		map.putMap();
-		if (engine->getEventReceiver()->isKeyDown(irr::KEY_UP))
+		if (engine->getEventReceiver()->isKeyDown(irr::KEY_UP)) {
 			player1.moveUp();
-		else if (engine->getEventReceiver()->isKeyDown(irr::KEY_DOWN))
+		} else if (engine->getEventReceiver()->isKeyDown(irr::KEY_DOWN)) {
 			player1.moveDown();
-		else if (engine->getEventReceiver()->isKeyDown(irr::KEY_RIGHT))
+		} else if (engine->getEventReceiver()->isKeyDown(irr::KEY_RIGHT)) {
 			player1.moveRight();
-		else if (engine->getEventReceiver()->isKeyDown(irr::KEY_LEFT))
+		} else if (engine->getEventReceiver()->isKeyDown(irr::KEY_LEFT)) {
 			player1.moveLeft();
+		}
 	}
-	engine->saveGame(map.getMap());
 	engine->drop();
 	return (RT_SUCCESS);
 }

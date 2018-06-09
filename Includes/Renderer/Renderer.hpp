@@ -7,6 +7,7 @@
 
 #include <irrlicht/irrlicht.h>
 #include "Engine/Engine.hpp"
+#include "Game/Map.hpp"
 
 namespace RR {
 	class Renderer {
@@ -26,8 +27,9 @@ namespace RR {
 
 		/* public function */
 		public:
-		void init();
+		void init(Game::Map &, size_t);
 		void render();
+		void render(Game::Map &, size_t size);
 
 		/* protected attribute */
 		protected:
@@ -35,20 +37,29 @@ namespace RR {
 		irr::IrrlichtDevice &mDevice;
 		irr::video::IVideoDriver &mDriver;
 		irr::scene::ISceneManager &mSceneMgr;
+		irr::video::SColor mBackColor;
+		irr::scene::ISceneNode *mBoxNode;
 	};
 
 	namespace Scene {
-		irr::scene::IMeshSceneNode *addMapCube(
-			irr::scene::ISceneManager &,
-			irr::video::IVideoDriver &,
-			irr::core::vector3df &
+		irr::scene::IMeshSceneNode *addGroundCube(irr::core::vector3df &
 		);
 
 		irr::scene::IMeshSceneNode *addBreakableCube(
-			irr::scene::ISceneManager &,
-			irr::video::IVideoDriver &,
-			irr::core::vector3df &
+			irr::core::vector3df &,
+			irr::scene::ISceneNode *
 		);
+
+		void spawnWall(std::vector<std::string> &, size_t);
+		void spawnBox(
+			std::vector<std::string> &,
+		        size_t,
+			irr::scene::ISceneNode *
+		);
+
+		void spawnGround(size_t);
+		void setBaseLight();
+		void setBaseCamera();
 	}
 }
 #endif //RENDERER_HPP
