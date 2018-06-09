@@ -64,7 +64,7 @@ namespace RR {
 		std::vector<std::string> rawMap = map.getMap();
 		mDevice.setWindowCaption(L"BomberMan");
 		RR::Scene::setBaseLight();
-		RR::Scene::setBaseCamera();
+		RR::Scene::setBaseCamera(mapSize);
 		RR::Scene::spawnGround(mapSize + 2);
 		RR::Scene::spawnWall(rawMap, mapSize + 2);
 		RR::Scene::spawnBox(rawMap, mapSize + 2, mBoxNode);

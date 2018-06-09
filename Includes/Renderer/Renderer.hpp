@@ -67,7 +67,7 @@ namespace RR {
 
 		void spawnGround(size_t);
 		void setBaseLight();
-		void setBaseCamera();
+		void setBaseCamera(size_t);
 	}
 }
 #endif //RENDERER_HPP

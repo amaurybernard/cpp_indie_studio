@@ -26,10 +26,16 @@ namespace RR {
 				irr::video::SColor(0,60,60,60));
 		}
 
-		void setBaseCamera() {
+		void setBaseCamera(size_t mapSize) {
 			auto sceneMgr =
 				Engine::Engine::instance()->getSceneManager();
-			sceneMgr->addCameraSceneNodeMaya();
+			if (mapSize == BIG)
+				sceneMgr->addCameraSceneNode(0, RR::m3df(100.0f,150.0f,190.0f), RR::m3df(100.0f, -180.0f, 0.0f));
+			else if (mapSize == MEDIUM)
+				sceneMgr->addCameraSceneNode(0, RR::m3df(70.0f,150.0f,160.0f), RR::m3df(70.0f, -180.0f, 0.0f));
+			else
+				sceneMgr->addCameraSceneNode(0, RR::m3df(60.0f,150.0f,140.0f), RR::m3df(60.0f, -180.0f, 0.0f));
+
 		}
 
 		irr::scene::IMeshSceneNode *addGroundCube(
