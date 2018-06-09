@@ -30,18 +30,23 @@ int 	main(void)
 	renderer.init(map, mapSize);
 	while(engine->getDevice()->run() && engine->getDriver()) {
 		if (engine->getDevice()->isWindowActive()) {
-			engine->update();
+
 			renderer.render(map, mapSize);
 		}
 		map.putMap();
-		if (engine->getEventReceiver()->isKeyDown(irr::KEY_UP))
+		if (engine->getEventReceiver()->isKeyDown(irr::KEY_UP)) {
 			player1.moveUp();
-		else if (engine->getEventReceiver()->isKeyDown(irr::KEY_DOWN))
+		}
+		else if (engine->getEventReceiver()->isKeyDown(irr::KEY_DOWN)) {
 			player1.moveDown();
-		else if (engine->getEventReceiver()->isKeyDown(irr::KEY_RIGHT))
+		}
+		else if (engine->getEventReceiver()->isKeyDown(irr::KEY_RIGHT)) {
 			player1.moveRight();
-		else if (engine->getEventReceiver()->isKeyDown(irr::KEY_LEFT))
+		}
+		else if (engine->getEventReceiver()->isKeyDown(irr::KEY_LEFT)) {
 			player1.moveLeft();
+		}
+		engine->update();
 	}
 	engine->drop();
 	return (RT_SUCCESS);
