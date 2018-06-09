@@ -5,34 +5,25 @@
 **      Created by Amaury Bernard, the 30/03/18, at 17:24
 */
 
-#ifndef FS_PATH_HPP
-#define FS_PATH_HPP
+#ifndef CPP_ARCADE_PATH_HPP
+#define CPP_ARCADE_PATH_HPP
 
 #include <string>
-/*
-** Improvements:
-** 	- fileSystem's shell tricks: ls, cd, mkdir, chmod, chown
-* 		- mkdir add va_arg
-*/
+
 namespace FileSystem {
 
 	class Path {
 	public:
+		Path(void) = default;
 		Path(const std::string &path);
 
 	public:
-		bool 			isFile(void) const;
-		bool 			isDirectory(void) const;
-		virtual bool		exist(void) = 0;
-		virtual void		create(void) = 0;
-		std::string 		getName(void) const;
-		const std::string 	&getAbsolutePath() const;
-		const std::string &getGivenPath() const;
+		bool 		isFile(void) const;
+		std::string getName(void) const;
 
-	private:
-		const std::string 		_givenPath;
-		std::string 			_absolutePath;
+	protected:
+		std::string _path;
 	};
 }
 
-#endif /* !FS_PATH_HPP */
+#endif /* !CPP_ARCADE_PATH_HPP*/

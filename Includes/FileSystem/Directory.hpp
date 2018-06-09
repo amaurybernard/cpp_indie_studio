@@ -5,12 +5,11 @@
 **      Created by Amaury Bernard, the 30/03/18, at 17:59
 */
 
-#ifndef FS_DIRECTORY_HPP
-#define FS_DIRECTORY_HPP
+#ifndef DIRECTORY_HPP
+#define DIRECTORY_HPP
 
 #include <vector>
 #include <dirent.h>
-
 #include "FileSystem/Path.hpp"
 #include "FileSystem/File.hpp"
 
@@ -19,25 +18,18 @@ namespace FileSystem {
 	class Directory : public Path {
 	public:
 		Directory(const std::string &path);
-		Directory(const Path &path);
-		~Directory(void);
+		Directory(Path &path);
 
 	public:
 		std::vector<FileSystem::File> getFiles(bool recursive = false);
-		virtual bool 		exist(void) final;
-		virtual void 		create(void);
 
 	private:
-		void	initialize(void);
-		void 	initDir(void);
-		void 	initDirNoChecking(void);
-		void	exceptNoInit(void);
+		void 	_opendir(void);
 
 	private:
-		bool 	_init = false;
-		DIR	*_dir = nullptr;
+		DIR	*_dir;
 
 	};
 }
 
-#endif /* !FS_DIRECTORY_HPP*/
+#endif /* !DIRECTORY_HPP*/

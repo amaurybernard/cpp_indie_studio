@@ -11,6 +11,9 @@
 #include <vector>
 
 namespace Engine {
+
+	enum buttonId_e {ONE_PLAYER, TWO_PLAYER, OPTION, EXIT, NONE};
+
 	class EventReceiver : public irr::IEventReceiver {
 	/* Public things */
 	public:
@@ -18,6 +21,8 @@ namespace Engine {
 	public: /* Methods */
 		virtual bool 	OnEvent(const irr::SEvent& event);
 		bool 		isKeyDown(irr::EKEY_CODE keyCode);
+		/* Getter for the button */
+		enum buttonId_e getBtn() const {return _btn;};
 		/** Have to be executed at each frame
 		** todo check is this is nececsary
 		*/
@@ -31,6 +36,7 @@ namespace Engine {
 		** @copydoc http://irrlicht.sourceforge.net/docu/namespaceirr.html#a54da2a0e231901735e3da1b0edf72eb3
 		*/
 		bool 			_keysDown[irr::KEY_KEY_CODES_COUNT];
+		enum buttonId_e _btn;
 	};
 }
 

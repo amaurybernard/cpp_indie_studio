@@ -6,9 +6,10 @@
 */
 
 #include <iostream>
-#include <fstream>
 #include "FileSystem/File.hpp"
 
+
+/*todo replace exception */
 FileSystem::File::File(const std::string &path)
 : Path(path)
 {
@@ -16,7 +17,7 @@ FileSystem::File::File(const std::string &path)
 		throw std::exception();
 }
 
-FileSystem::File::File(const FileSystem::Path &path)
+FileSystem::File::File(FileSystem::Path &path)
 	: Path(path)
 {
 	if (!this->isFile())
@@ -24,23 +25,12 @@ FileSystem::File::File(const FileSystem::Path &path)
 }
 
 /**
-** Check if the Extension match
-** @param find extension to find. For example "so".
-** @return true when extension is found
+*
+* @param find extension to find. For example "so".
+* @return
 */
 bool FileSystem::File::hasExtension(const std::string &find) const
 {
-	return this->getAbsolutePath().rfind(find) + find.length()
-	== this->getAbsolutePath().length();
-}
-
-void FileSystem::File::create(void)
-{
-	std::ofstream outfile ("test.txt");
-	outfile.close();
-}
-
-bool FileSystem::File::exist(void)
-{
-	return this->isFile();
+	return _path.rfind(find) + find.length()
+	== _path.length();
 }

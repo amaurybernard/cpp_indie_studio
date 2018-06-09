@@ -7,38 +7,29 @@
 
 #ifndef ENGINE_HPP
 #define ENGINE_HPP
-#include <string>
 #include <irrlicht/irrlicht.h>
 #include "EventReceiver.hpp"
 
 /** The Engine class keep all basic object needed by the graphical library */
 namespace Engine {
 	class Engine {
-	private:
-		/** Use instance() instead */
-		Engine(void);
-		static Engine				*_instance;
+	/* Public things: */
 	public:
+		Engine(irr::video::E_DRIVER_TYPE videoType
+		= irr::video::EDT_OPENGL,
+		irr::core::dimension2d<irr::u32> dimension2d
+		= irr::core::dimension2d<irr::u32>(1920, 1080));
 		~Engine(void);
 
 	public:	/* methods */
-		static Engine 			*instance(void);
-		/* Useful ? */
-		void	 			drop(void);
-		EventReceiver 			*getEventReceiver();
-		irr::IrrlichtDevice 		*getDevice() const;
-		irr::scene::ISceneManager 	*getSceneManager() const;
-		irr::video::IVideoDriver 	*getDriver() const;
+		EventReceiver *getEventReceiver();
+		irr::IrrlichtDevice *getDevice() const;
+		irr::scene::ISceneManager *getSceneManager() const;
+		irr::video::IVideoDriver *getDriver() const;
 		void 				update(void);
-		/* @Return true in case of error */
-		bool saveGame(const std::vector<std::string> map, std::string name = "");
 
+	/* Private things */
 	private:
-		static constexpr irr::video::E_DRIVER_TYPE VIDEO_TYPE
-		= irr::video::EDT_OPENGL;
-		static constexpr irr::u32 		DIM_VERTICAL = 1080;
-		static constexpr irr::u32		DIM_HORIZONTAL = 1920;
-		static constexpr char	SAVEDGAMES_DIR[] = "SavedGames/";
 		irr::IrrlichtDevice			*_device;
 		EventReceiver				_EventReceiver;
 		irr::video::IVideoDriver		*_driver;
@@ -46,4 +37,4 @@ namespace Engine {
 	};
 }
 
-#endif /* !ENGINE_HPP */
+#endif /* !ENGINE_HPP*/

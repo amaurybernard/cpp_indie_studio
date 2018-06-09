@@ -8,7 +8,8 @@
 #include "Engine/EventReceiver.hpp"
 
 Engine::EventReceiver::EventReceiver(irr::IrrlichtDevice &device)
-: _device(device)
+	: _device(device),
+	  _btn(NONE)
 {
 	this->resetKeysDown();
 }
@@ -20,6 +21,29 @@ bool Engine::EventReceiver::OnEvent(const irr::SEvent &event)
 			_keysDown[event.KeyInput.Key] = event.KeyInput.PressedDown;
 		if (event.KeyInput.Key == irr::KEY_ESCAPE && event.KeyInput.PressedDown)
 			_device.closeDevice();
+	} else if (event.EventType == irr::EET_GUI_EVENT) {
+		auto id = event.GUIEvent.Caller->getID();
+		if (event.GUIEvent.EventType == irr::gui::EGET_BUTTON_CLICKED)
+		{
+			switch (id) {
+			case ONE_PLAYER:
+				_btn = ONE_PLAYER;
+				break;
+			case TWO_PLAYER:
+				_btn = TWO_PLAYER;
+				break;
+			case OPTION:
+				_btn = OPTION;
+				break;
+			case EXIT:
+				_btn = EXIT;
+				break;
+			default:
+				_btn = NONE;
+				break;
+
+			}
+		}
 	}
 	return false;
 }

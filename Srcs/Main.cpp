@@ -5,44 +5,28 @@
 **      Created by Amaury Bernard, the 5/15/18, at 2:13 PM
 */
 
-#include <vector>
-#include <string>
 #include <irrlicht/irrlicht.h>
 #include "Engine/EventReceiver.hpp"
 #include "Engine/Engine.hpp"
-#include "Renderer/Renderer.hpp"
 #include "Bomberman.hpp"
-
-#include "Game/Character.hpp"
-#include "Game/Map.hpp"
+#include "Menu/Menu.hpp"
 
 int 	main(void)
 {
-	Engine::Engine		*engine = Engine::Engine::instance();
-	RR::Renderer		renderer(*engine);
-	size_t			mapSize = MEDIUM;
-	Game::Map		map(mapSize);
-	Game::Character		player1(map, 1, mapSize);
-	Game::Character		player2(map, 2, mapSize);
-	Game::Character		player3(map, 3, mapSize);
-	Game::Character		player4(map, 4, mapSize);
+	Engine::Engine		engine;
 
-	renderer.init();
-	while(engine->getDevice()->run() && engine->getDriver()) {
-		if (engine->getDevice()->isWindowActive()) {
-			engine->update();
-			renderer.render();
+	engine.getDevice()->setWindowCaption(L"BomberMan");
+	Menu menu(&engine);
+
+	menu.runMenu();
+	/*while(engine.getDevice()->run() && engine.getDriver()) {
+		if (engine.getEventReceiver()->isKeyDown(irr::KEY_SPACE)) {
+			puts("main: space is true");
+			//return (RT_FAILURE);
 		}
-		map.putMap();
-		if (engine->getEventReceiver()->isKeyDown(irr::KEY_UP))
-			player1.moveUp();
-		else if (engine->getEventReceiver()->isKeyDown(irr::KEY_DOWN))
-			player1.moveDown();
-		else if (engine->getEventReceiver()->isKeyDown(irr::KEY_RIGHT))
-			player1.moveRight();
-		else if (engine->getEventReceiver()->isKeyDown(irr::KEY_LEFT))
-			player1.moveLeft();
-	}
-	engine->drop();
+		if (engine.getDevice()->isWindowActive()) {
+			engine.update();
+		}
+		}*/
 	return (RT_SUCCESS);
 }
