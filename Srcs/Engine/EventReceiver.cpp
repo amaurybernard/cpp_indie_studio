@@ -16,8 +16,19 @@ Engine::EventReceiver::EventReceiver(irr::IrrlichtDevice &device)
 bool Engine::EventReceiver::OnEvent(const irr::SEvent &event)
 {
 	if (event.EventType == irr::EET_KEY_INPUT_EVENT) {
-		if (event.KeyInput.PressedDown)
-			_keysDown[event.KeyInput.Key] = event.KeyInput.PressedDown;
+		if (event.KeyInput.PressedDown) {
+			if (_keysDown[event.KeyInput.Key] == KEYS_DOWN_TYPE::SHORT
+				&& _keysDownTimer[event.KeyInput.Key]->max() >= 500)
+				_keysDown[event.KeyInput.Key] = KEYS_DOWN_TYPE::LONG;
+			} else {
+				_keysDown[event.KeyInput.Key] = KEYS_DOWN_TYPE::SHORT;
+				_keysDownTimer[event.KeyInput.Key]
+				= new std::chrono::duration<std::chrono::milliseconds>;
+			}
+		} else {
+			_keysDown[event.KeyInput.Key] = KEYS_DOWN_TYPE::NOT_DOWN;
+		}
+
 		if (event.KeyInput.Key == irr::KEY_ESCAPE && event.KeyInput.PressedDown)
 			_device.closeDevice();
 	}
@@ -32,11 +43,11 @@ bool Engine::EventReceiver::isKeyDown(irr::EKEY_CODE keyCode)
 void Engine::EventReceiver::resetKeysDown(void)
 {
 	for (auto&& key : _keysDown) {
-		key = false;
+		key = KEYS_DOWN_TYPE::NOT_DOWN;
 	}
 }
 
 void Engine::EventReceiver::update(void)
 {
-	this->resetKeysDown();
+	//this->resetKeysDown();
 }
