@@ -27,13 +27,13 @@ bool Engine::EventReceiver::OnEvent(const irr::SEvent &event)
 		{
 			switch (id) {
 			case PLAY:
-				_btn = ONE_PLAYER;
+				_btn = PLAY;
 				break;
 			case LAN:
-				_btn = TWO_PLAYER;
+				_btn = LAN;
 				break;
 			case BACKUP:
-				_btn = OPTION;
+				_btn = BACKUP;
 				break;
 			case EXIT:
 				_btn = EXIT;
