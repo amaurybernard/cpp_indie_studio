@@ -18,7 +18,7 @@ public:
 
 private:
 	void createButton();
-	void actionButton(Engine::buttonId_e btn, auto device);
+	void actionButton(Engine::buttonId_e btn, irr::IrrlichtDevice *device);
 
 private:
 	Engine::Engine *_engine;

@@ -28,7 +28,7 @@ void Menu::createButton()
                         Engine::buttonId_e::EXIT, L"EXIT", L"EXIT");
 }
 
-void Menu::actionButton(Engine::buttonId_e btn, auto device)
+void Menu::actionButton(Engine::buttonId_e btn, irr::IrrlichtDevice *device)
 {
 	switch (btn)
 	{
@@ -39,7 +39,6 @@ void Menu::actionButton(Engine::buttonId_e btn, auto device)
 	case Engine::buttonId_e::OPTION:
 		break;
 	case Engine::buttonId_e::EXIT:
-		device->drop();
 		device->closeDevice();
 		break;
 	case Engine::buttonId_e::NONE:
