@@ -33,15 +33,10 @@ int 	main(void)
 			renderer.render(map, mapSize);
 		}
 		map.putMap();
-		if (engine->getEventReceiver()->isKeyDown(irr::KEY_UP)) {
-			player1.moveUp();
-		} else if (engine->getEventReceiver()->isKeyDown(irr::KEY_DOWN)) {
-			player1.moveDown();
-		} else if (engine->getEventReceiver()->isKeyDown(irr::KEY_RIGHT)) {
-			player1.moveRight();
-		} else if (engine->getEventReceiver()->isKeyDown(irr::KEY_LEFT)) {
-			player1.moveLeft();
-		}
+                player1.move(*engine);
+                player1.testBomb();
+                if (engine->getEventReceiver()->isKeyDown(irr::KEY_SPACE))
+                        player1.placeBomb();
 	}
 	engine->drop();
 	return (RT_SUCCESS);
