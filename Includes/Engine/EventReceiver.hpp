@@ -12,7 +12,7 @@
 
 namespace Engine {
 
-	enum buttonId_e {ONE_PLAYER, TWO_PLAYER, OPTION, EXIT, NONE};
+	enum buttonId_e {PLAY, LAN, BACKUP, EXIT, NONE};
 
 	class EventReceiver : public irr::IEventReceiver {
 	/* Public things */

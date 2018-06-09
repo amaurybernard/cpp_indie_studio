@@ -19,11 +19,11 @@ void Menu::createButton()
 {
 //const irr::core::dimension2du &screenSize = driver->irr::video::IVideoDriver::getScreenSize();
 	_env->addButton(irr::core::rect<irr::s32>(100, 100, 500, 180), 0,
-			Engine::buttonId_e::ONE_PLAYER, L"1 PLAYER", L"1 PLAYER");
+			Engine::buttonId_e::PLAY, L"PLAY", L"1 PLAYER");
 	_env->addButton(irr::core::rect<irr::s32>(100, 200, 500, 280), 0,
-                        Engine::buttonId_e::TWO_PLAYER, L"2 PLAYERS", L"2 PLAYERS");
+                        Engine::buttonId_e::LAN, L"LAN", L"MULTIPLAYER");
 	_env->addButton(irr::core::rect<irr::s32>(100, 300, 500, 380), 0,
-                        Engine::buttonId_e::EXIT, L"OPTIONS", L"OPTIONS");
+                        Engine::buttonId_e::BACKUP, L"BACKUP", L"BACKUP");
 	_env->addButton(irr::core::rect<irr::s32>(100, 400, 500, 480), 0,
                         Engine::buttonId_e::EXIT, L"EXIT", L"EXIT");
 }
@@ -32,11 +32,11 @@ void Menu::actionButton(Engine::buttonId_e btn, irr::IrrlichtDevice *device)
 {
 	switch (btn)
 	{
-	case Engine::buttonId_e::ONE_PLAYER:
+	case Engine::buttonId_e::PLAY:
 		break;
-	case Engine::buttonId_e::TWO_PLAYER:
+	case Engine::buttonId_e::LAN:
 		break;
-	case Engine::buttonId_e::OPTION:
+	case Engine::buttonId_e::BACKUP:
 		break;
 	case Engine::buttonId_e::EXIT:
 		device->closeDevice();

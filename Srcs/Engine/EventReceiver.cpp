@@ -26,13 +26,13 @@ bool Engine::EventReceiver::OnEvent(const irr::SEvent &event)
 		if (event.GUIEvent.EventType == irr::gui::EGET_BUTTON_CLICKED)
 		{
 			switch (id) {
-			case ONE_PLAYER:
+			case PLAY:
 				_btn = ONE_PLAYER;
 				break;
-			case TWO_PLAYER:
+			case LAN:
 				_btn = TWO_PLAYER;
 				break;
-			case OPTION:
+			case BACKUP:
 				_btn = OPTION;
 				break;
 			case EXIT:
