@@ -39,6 +39,8 @@ namespace RR {
 		irr::scene::ISceneManager &mSceneMgr;
 		irr::video::SColor mBackColor;
 		irr::scene::ISceneNode *mBoxNode;
+		irr::scene::ISceneNode *mPlayerNode;
+
 	};
 
 	namespace Scene {
@@ -54,6 +56,12 @@ namespace RR {
 		void spawnBox(
 			std::vector<std::string> &,
 		        size_t,
+			irr::scene::ISceneNode *
+		);
+
+		void spawnPlayer(
+			std::vector<std::string> &,
+			size_t,
 			irr::scene::ISceneNode *
 		);
 

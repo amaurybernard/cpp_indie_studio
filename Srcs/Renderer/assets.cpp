@@ -8,8 +8,14 @@
 #include <irrlicht/irrlicht.h>
 #include "Engine/Engine.hpp"
 #include "Game/Game.hpp"
+#include <unistd.h>
+#include <string>
 
 namespace RR {
+	irr::core::vector3df m3df(float x, float y, float z)
+	{
+		return irr::core::vector3df(x,y,z);
+	}
 	namespace Scene {
 		void setBaseLight() {
 			auto sceneMgr =
@@ -94,6 +100,32 @@ namespace RR {
 			return newCube;
 		}
 
+		irr::scene::IAnimatedMesh *addPlayer(
+			irr::core::vector3df &pos,
+			irr::scene::ISceneNode *playerNode,
+			char id
+		)
+		{
+			auto sceneMgr =
+				Engine::Engine::instance()->getSceneManager();
+			auto driver =
+				Engine::Engine::instance()->getDriver();
+			irr::scene::IAnimatedMesh* newPlayer =
+				sceneMgr->getMesh("./models/BomberMan.3ds");
+			irr::scene::ISceneNode* node =
+				sceneMgr->addAnimatedMeshSceneNode(newPlayer,
+					playerNode);
+			node->setID((int)id - 48);
+			node->setPosition(RR::m3df(0.0f, -5.0f, 0.0f) + pos);
+			node->setScale(RR::m3df(0.05f, 0.05f, 0.05f));
+			node->setRotation(RR::m3df(-90.0f, 180.0f, 0.0f));
+			node->setMaterialTexture(0,
+				driver->getTexture("./models/Bombermap.tga"));
+			sceneMgr->getMeshManipulator()->makePlanarTextureMapping(newPlayer->getMesh(0),0.004f);
+			node->setMaterialFlag(irr::video::EMF_LIGHTING,false);
+			return newPlayer;
+		}
+
 		void spawnGround(size_t mapSize)
 		{
 			for (int j = 0; j < mapSize; ++j) {
@@ -131,6 +163,26 @@ namespace RR {
 						Scene::addBreakableCube(
 							pos,
 							boxNode);
+				}
+			}
+		}
+
+		void spawnPlayer(std::vector<std::string> &rawMap, size_t size,
+			irr::scene::ISceneNode *playerNode)
+		{
+			for (int j = 0; j < size; ++j) {
+				float z = 0.0f + (j * 10.0f);
+				for (int i = 0; i < size; ++i) {
+					float x = 0.0f + (i * 10.0f);
+					irr::core::vector3df pos(x,10.0f,z);
+					if (rawMap[j][i] == '1'
+						|| rawMap[j][i] == '2'
+						|| rawMap[j][i] == '3'
+						|| rawMap[j][i] == '4')
+						Scene::addPlayer(
+							pos,
+							playerNode,
+							rawMap[j][i]);
 				}
 			}
 		}
