@@ -11,17 +11,11 @@
 
 FileSystem::File::File(const std::string &path)
 : Path(path)
-{
-	if (!this->isFile())
-		throw std::exception();
-}
+{}
 
 FileSystem::File::File(const FileSystem::Path &path)
-	: Path(path)
-{
-	if (!this->isFile())
-		throw std::exception();
-}
+: Path(path)
+{}
 
 /**
 ** Check if the Extension match
@@ -36,11 +30,18 @@ bool FileSystem::File::hasExtension(const std::string &find) const
 
 void FileSystem::File::create(void)
 {
-	std::ofstream outfile ("test.txt");
+	std::ofstream outfile(getAbsolutePath());
 	outfile.close();
 }
 
 bool FileSystem::File::exist(void)
 {
 	return this->isFile();
+}
+
+void FileSystem::File::write(const std::string &str)
+{
+	std::ofstream outfile(getAbsolutePath(), std::ios::app);
+	outfile << str;
+	outfile.close();
 }

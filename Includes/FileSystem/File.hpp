@@ -24,6 +24,7 @@ namespace FileSystem {
 		bool			hasExtension(const std::string &find = nullptr) const;
 		void 		create(void) final;
 		bool 		exist(void) final;
+		void 		write(const std::string &str);
 	};
 }
 

@@ -17,8 +17,6 @@ FileSystem::Path::Path(const std::string &path)
 	if (_givenPath[0] != '/') {
 		char *current_dir = get_current_dir_name();
 		_absolutePath = current_dir + std::string("/") + _givenPath;
-		puts(getAbsolutePath().c_str());
-		puts(getGivenPath().c_str());
 		free(current_dir);
 	} else {
 		_absolutePath = _givenPath;

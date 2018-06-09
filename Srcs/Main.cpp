@@ -43,6 +43,7 @@ int 	main(void)
 		else if (engine->getEventReceiver()->isKeyDown(irr::KEY_LEFT))
 			player1.moveLeft();
 	}
+	engine->saveGame(map.getMap());
 	engine->drop();
 	return (RT_SUCCESS);
 }

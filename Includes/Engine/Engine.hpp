@@ -7,6 +7,7 @@
 
 #ifndef ENGINE_HPP
 #define ENGINE_HPP
+#include <vector>
 #include <string>
 #include <irrlicht/irrlicht.h>
 #include "EventReceiver.hpp"
@@ -17,12 +18,12 @@ namespace Engine {
 	private:
 		/** Use instance() instead */
 		Engine(void);
-		static Engine				*_instance;
 	public:
 		~Engine(void);
-
 	public:	/* methods */
+		/* to initialize the class: */
 		static Engine 			*instance(void);
+
 		/* Useful ? */
 		void	 			drop(void);
 		EventReceiver 			*getEventReceiver();
@@ -34,6 +35,7 @@ namespace Engine {
 		bool saveGame(const std::vector<std::string> map, std::string name = "");
 
 	private:
+		static Engine				*_instance;
 		static constexpr irr::video::E_DRIVER_TYPE VIDEO_TYPE
 		= irr::video::EDT_OPENGL;
 		static constexpr irr::u32 		DIM_VERTICAL = 1080;

@@ -5,13 +5,14 @@
 **      Created by Amaury Bernard, the 5/15/18, at 2:13 PM
 */
 
+#include <vector>
 #include <iostream>
 #include <ctime>
 #include "FileSystem/File.hpp"
 #include "FileSystem/Directory.hpp"
 #include "Engine/Engine.hpp"
 
-extern Engine::Engine *Engine::Engine::_instance;
+Engine::Engine *Engine::Engine::_instance;
 
 Engine::Engine::Engine(void)
 : _device(irr::createDevice(VIDEO_TYPE,
@@ -86,8 +87,10 @@ bool Engine::Engine::saveGame(const std::vector<std::string> map, std::string na
 	if (!dir.exist()) {
 		dir.create();
 	}
-	//FileSystem::File file(dir.getAbsolutePath() + name); todo find exception
-	//file.create();
-	(void)map;
+	FileSystem::File file(dir.getAbsolutePath() + name);
+	file.write(std::to_string(map.size()) + std::string("\n"));
+	for (auto line : map) {
+		file.write(line + std::string("\n"));
+	}
 	return false;
 }
