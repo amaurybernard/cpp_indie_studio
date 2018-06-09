@@ -61,11 +61,6 @@ Engine::EventReceiver *Engine::Engine::getEventReceiver()
 	return &_EventReceiver;
 }
 
-void Engine::Engine::update(void)
-{
-	_EventReceiver.update();
-}
-
 
 Engine::Engine *Engine::Engine::instance(void)
 {
@@ -93,4 +88,10 @@ bool Engine::Engine::saveGame(const std::vector<std::string> map, std::string na
 		file.write(line + std::string("\n"));
 	}
 	return false;
+}
+
+bool Engine::Engine::keepLooping(void)
+{
+	this->getEventReceiver()->update();
+	return this->getDevice()->run() && this->getDriver();
 }

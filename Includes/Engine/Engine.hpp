@@ -26,11 +26,11 @@ namespace Engine {
 
 		/* Useful ? */
 		void	 			drop(void);
-		EventReceiver 			*getEventReceiver();
-		irr::IrrlichtDevice 		*getDevice() const;
-		irr::scene::ISceneManager 	*getSceneManager() const;
-		irr::video::IVideoDriver 	*getDriver() const;
-		void 				update(void);
+		EventReceiver 			*getEventReceiver(void);
+		irr::IrrlichtDevice 		*getDevice(void) const;
+		irr::scene::ISceneManager 	*getSceneManager(void) const;
+		irr::video::IVideoDriver 	*getDriver(void) const;
+		bool 				keepLooping(void);
 		/* @Return true in case of error */
 		bool saveGame(const std::vector<std::string> map, std::string name = "");
 

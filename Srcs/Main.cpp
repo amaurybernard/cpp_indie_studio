@@ -28,9 +28,8 @@ int 	main(void)
 	Game::Character		player4(map, 4, mapSize);
 
 	renderer.init();
-	while(engine->getDevice()->run() && engine->getDriver()) {
+	while(engine->keepLooping()) {
 		if (engine->getDevice()->isWindowActive()) {
-			engine->update();
 			renderer.render();
 		}
 		map.putMap();
