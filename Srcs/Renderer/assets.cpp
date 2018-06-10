@@ -66,11 +66,32 @@ namespace RR {
 			auto sceneMgr =
 				Engine::Engine::instance()->getSceneManager();
 			if (mapSize == BIG)
-				sceneMgr->addCameraSceneNode(0, RR::m3df(100.0f,150.0f,190.0f), RR::m3df(100.0f, -180.0f, 0.0f));
+				sceneMgr->addCameraSceneNode(0,
+					RR::m3df(100.0f,150.0f,190.0f),
+					RR::m3df(100.0f, -180.0f, 0.0f));
 			else if (mapSize == MEDIUM)
-				sceneMgr->addCameraSceneNode(0, RR::m3df(70.0f,150.0f,160.0f), RR::m3df(70.0f, -180.0f, 0.0f));
+				sceneMgr->addCameraSceneNode(0,
+					RR::m3df(70.0f,150.0f,160.0f),
+					RR::m3df(70.0f, -180.0f, 0.0f));
 			else
-				sceneMgr->addCameraSceneNode(0, RR::m3df(60.0f,150.0f,140.0f), RR::m3df(60.0f, -180.0f, 0.0f));
+				sceneMgr->addCameraSceneNode(0,
+					RR::m3df(60.0f,150.0f,140.0f),
+					RR::m3df(60.0f, -180.0f, 0.0f));
+
+		}
+
+		void setPlayerRotation(irr::scene::ISceneNode *pNode) {
+			auto sceneMgr =
+				Engine::Engine::instance()->getSceneManager();
+			int orientation = 1;
+			if (orientation == 0)
+				pNode->setRotation(RR::m3df(-90, 0, 0));
+			else if (orientation == 1)
+				pNode->setRotation(RR::m3df(-90, 90, 0));
+			else if (orientation == 2)
+				pNode->setRotation(RR::m3df(-90, 180, 0));
+			else
+				pNode->setRotation(RR::m3df(-90, 270, 0));
 
 		}
 
@@ -160,7 +181,7 @@ namespace RR {
 			node->setID((int)id - 48);
 			node->setPosition(RR::m3df(0.0f, -5.0f, 0.0f) + pos);
 			node->setScale(RR::m3df(0.05f, 0.05f, 0.05f));
-			node->setRotation(RR::m3df(-90.0f, 180.0f, 0.0f));
+			RR::Scene::setPlayerRotation(node);
 			node->setMaterialTexture(0,
 				driver->getTexture("./models/Bombermap.tga"));
 			node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
@@ -221,7 +242,6 @@ namespace RR {
 			node->setScale(RR::m3df(4.0f, 4.0f, 4.0f));
 			node->setMaterialTexture(0,
 				driver->getTexture("./models/bombbody_BaseColor.png"));
-			//sceneMgr->getMeshManipulator()->makePlanarTextureMapping(newBomb->getMesh(0),0.004f);
 			node->setMaterialFlag(irr::video::EMF_LIGHTING,false);
 			return newBomb;
 		}

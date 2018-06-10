@@ -81,6 +81,8 @@ namespace RR {
 			irr::scene::ISceneNode *
 		);
 
+		void setPlayerRotation(irr::scene::ISceneNode *);
+
 		void drawText();
 
 		void spawnGround(size_t);
