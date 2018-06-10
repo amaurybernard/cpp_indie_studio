@@ -37,7 +37,6 @@ int 	main(void)
 				renderer.render(game->getMap(),
 					game->getMapSize());
 			}
-			game->getMap().putMap();
 			game->loop(*engine);
 		} else {
 			game = menu.getSelectedGame();
