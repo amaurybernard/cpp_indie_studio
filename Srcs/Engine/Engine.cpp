@@ -95,3 +95,12 @@ bool Engine::Engine::keepLooping(void)
 	this->getEventReceiver()->update();
 	return this->getDevice()->run() && this->getDriver();
 }
+
+std::vector<std::string> Engine::Engine::loadGamesNames(void)
+{
+	FileSystem::Directory saveDir(SAVEDGAMES_DIR);
+	if (!saveDir.exist()) {
+		return std::vector<std::string>();
+	}
+	return std::vector<std::string>();
+}

@@ -33,6 +33,7 @@ namespace Engine {
 		bool 				keepLooping(void);
 		/* @Return true in case of error */
 		bool saveGame(const std::vector<std::string> map, std::string name = "");
+		std::vector<std::string>	loadGamesNames(void);
 
 	public:
 		static constexpr irr::u32 		DIM_VERTICAL = 1080;

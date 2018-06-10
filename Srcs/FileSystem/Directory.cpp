@@ -8,6 +8,7 @@
 #include <dirent.h>
 #include <iostream>
 #include <sys/stat.h>
+#include <vector>
 #include "FileSystem/Directory.hpp"
 
 FileSystem::Directory::Directory(const std::string &path)
@@ -26,9 +27,16 @@ void FileSystem::Directory::initialize(void)
 std::vector<FileSystem::File> FileSystem::Directory::getFiles(bool recursive)
 {
 	this->exceptNoInit();
-	std::vector<FileSystem::File>	files;
+	std::vector<FileSystem::File> files;
 
 	(void)recursive;
+	while(Dir=readdir(Dir))
+	{
+		if ( DirEntry->d_type == isFile)
+		{
+			cout <<"Found a File : " << DirEntry->d_name << endl;
+		}
+	}
 	return files;
 }
 
