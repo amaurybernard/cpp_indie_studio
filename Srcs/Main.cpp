@@ -27,10 +27,12 @@ int 	main(void)
 	RR::Renderer		renderer(*engine);
 	Game::Game		*game = nullptr;
 	Menu::Menu		menu;
+	bool 			rendererInit= false;
 
-	renderer.init(game->getMap(), game->getMapSize());
 	while(engine->keepLooping()) {
 		if (game) {
+			if (!rendererInit)
+				renderer.init(game->getMap(), game->getMapSize());
 			if (engine->getDevice()->isWindowActive()) {
 				renderer.render(game->getMap(),
 					game->getMapSize());
