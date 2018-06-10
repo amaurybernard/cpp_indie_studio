@@ -265,15 +265,15 @@ namespace RR {
 		}
 
 		void spawnFlame(std::vector<std::string> &rawMap, size_t size,
-			irr::scene::ISceneNode *FlameNode)
+			irr::scene::ISceneNode *flameNode)
 		{
 			for (int j = 0; j < size; ++j) {
 				float z = 0.0f + (j * 10.0f);
 				for (int i = 0; i < size; ++i) {
 					float x = 0.0f + (i * 10.0f);
 					irr::core::vector3df pos(x,10.0f,z);
-					if (rawMap[j][i] == 'f')
-						Scene::addWallCube(pos);
+					if (rawMap[j][i] == 'O')
+						Scene::addBomb(pos, flameNode);
 				}
 			}
 		}
