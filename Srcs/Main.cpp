@@ -42,7 +42,9 @@ int 	main(void)
 					game->getMapSize(),
 					game->getPlayers());
 			}
-			game->loop(*engine);
+			size_t nb_winner = game->loop(*engine);
+			if(nb_winner != Game::NO_WINNER)
+				renderer.gameover(nb_winner);
 		} else {
 			game = menu.getSelectedGame();
 		}

@@ -28,7 +28,7 @@ Game::Game::~Game()
 	}
 }
 
-void Game::Game::loop(Engine::Engine &engine)
+size_t Game::Game::loop(Engine::Engine &engine)
 {
 	_player[0]->move(engine);
 	_player[0]->testBomb(_player);
@@ -40,6 +40,19 @@ void Game::Game::loop(Engine::Engine &engine)
 		if (engine.getEventReceiver()->isKeyDown(irr::KEY_KEY_X))
 			_player[1]->placeBomb();
 	}
+	size_t i = 0;
+	for (Character *player : _player) {
+		if (player->getHP() == 0) {
+			if (i == 2 && !player->isHuman()) {
+				return 0;
+			} else if (i == 3 && !player->isHuman()) {
+				return 1;
+			}
+
+		}
+		++i;
+	}
+	return NO_WINNER;
 }
 
 Game::Character Game::Game::getPlayer(size_t nb)
