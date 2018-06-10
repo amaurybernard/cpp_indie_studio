@@ -28,13 +28,15 @@ std::vector<FileSystem::File> FileSystem::Directory::getFiles(bool recursive)
 {
 	this->exceptNoInit();
 	std::vector<FileSystem::File> files;
+	unsigned char isFile =0x8;
+	struct dirent *DirEntry;
 
 	(void)recursive;
-	while(Dir=readdir(Dir))
+	while(readdir(_dir))
 	{
 		if ( DirEntry->d_type == isFile)
 		{
-			cout <<"Found a File : " << DirEntry->d_name << endl;
+			std::cout <<"Found a File : " << DirEntry->d_name << std::endl;
 		}
 	}
 	return files;
