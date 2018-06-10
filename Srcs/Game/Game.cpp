@@ -43,9 +43,9 @@ size_t Game::Game::loop(Engine::Engine &engine)
 	size_t i = 0;
 	for (Character *player : _player) {
 		if (player->getHP() == 0) {
-			if (i == 2 && !player->isHuman()) {
+			if (i == 0 && !_player[1]->isHuman()) {
 				return 0;
-			} else if (i == 3 && !player->isHuman() && _player[0]->getHP() == 0) {
+			} else if (i == 1 && !_player[2]->isHuman() && _player[0]->getHP() == 0) {
 				return 1;
 			}
 
