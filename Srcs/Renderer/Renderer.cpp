@@ -68,14 +68,15 @@ namespace RR {
 		mDriver.endScene();
 	}
 
-	void Renderer::render(Game::Map &map, size_t size)
+	void Renderer::render(Game::Map &map, size_t size,
+		std::vector<Game::Character *> characters)
 	{
 		std::vector<std::string> rawMap = map.getMap();
 		mBoxNode->removeAll();
 		mPlayerNode->removeAll();
 		mBombNode->removeAll();
 		RR::Scene::spawnBox(rawMap, size + 2, mBoxNode);
-		RR::Scene::spawnPlayer(rawMap, size + 2, mPlayerNode);
+		RR::Scene::spawnPlayer(rawMap, size + 2, mPlayerNode, characters);
 		RR::Scene::spawnBomb(rawMap, size + 2, mBombNode);
 		RR::Scene::spawnFlame(rawMap, size + 2, mFlameNode);
 		mDriver.beginScene(true, true, mBackColor);
@@ -83,11 +84,12 @@ namespace RR {
 			irr::core::rect<irr::s32>(0,0,1920,1080), 0,
 			irr::video::SColor(255,255,255,255), true);
 		mSceneMgr.drawAll();
-		RR::Scene::drawText();
+		RR::Scene::drawText(characters);
 		mDriver.endScene();
 	}
 
-	void Renderer::init(Game::Map &map,  size_t mapSize)
+	void Renderer::init(Game::Map &map,  size_t mapSize,
+		std::vector<Game::Character *> characters)
 	{
 		std::vector<std::string> rawMap = map.getMap();
 		mDevice.setWindowCaption(L"BomberMan");
@@ -97,7 +99,7 @@ namespace RR {
 		RR::Scene::spawnGround(mapSize);
 		RR::Scene::spawnWall(rawMap, mapSize);
 		RR::Scene::spawnBox(rawMap, mapSize, mBoxNode);
-		RR::Scene::spawnPlayer(rawMap, mapSize, mPlayerNode);
+		RR::Scene::spawnPlayer(rawMap, mapSize, mPlayerNode, characters);
 		RR::Scene::spawnBomb(rawMap, mapSize, mBombNode);
 		RR::Scene::spawnFlame(rawMap, mapSize, mFlameNode);
 	}

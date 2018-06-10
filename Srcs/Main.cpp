@@ -33,12 +33,14 @@ int 	main(void)
 		if (game) {
 			if (!rendererInit) {
 				renderer.init(game->getMap(),
-					game->getMapSize());
+					game->getMapSize(),
+					game->getPlayers());
 				rendererInit = true;
 			}
 			if (engine->getDevice()->isWindowActive()) {
 				renderer.render(game->getMap(),
-					game->getMapSize());
+					game->getMapSize(),
+					game->getPlayers());
 			}
 			game->loop(*engine);
 		} else {
