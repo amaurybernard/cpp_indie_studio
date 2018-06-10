@@ -33,6 +33,9 @@ void Menu::Menu::createButtons()
 	createMenuButton("Play on LAN");
 	createMenuButton("Play from Backup");
 	createMenuButton("Exit");
+	createRightButton("Low Level");
+	createRightButton("Medium Level");
+	createRightButton("hight Level");
 }
 
 Game::Game *Menu::Menu::getSelectedGame(void)
@@ -41,19 +44,28 @@ Game::Game *Menu::Menu::getSelectedGame(void)
 	switch (btn)
 	{
 	case ButtonId::PLAY_KB:
-		return new Game::Game(2, MEDIUM, DENSITY_MEDIUM);
+		return new Game::Game(2, _GameSize, DENSITY_MEDIUM);
 	case ButtonId::PLAY_IA:
-		return new Game::Game(1, MEDIUM, DENSITY_MEDIUM);
+		return new Game::Game(1, _GameSize, DENSITY_MEDIUM);
 		break;
 	case ButtonId::PLAY_LAN:
-		return new Game::Game(1, SMALL, DENSITY_MEDIUM);
+		return new Game::Game(1, _GameSize, DENSITY_MEDIUM);
 		break;
 	case ButtonId::BACKUP:
 		//Change the screen and show an other menu
-		return new Game::Game(1, BIG, DENSITY_MEDIUM);
+		return new Game::Game(1, _GameSize, DENSITY_MEDIUM);
 		break;
 	case ButtonId::EXIT:
 		_engine->getDevice()->closeDevice();
+		return nullptr;
+	case ButtonId::EXIT + 1:
+		_GameSize = SMALL;
+		return nullptr;
+	case ButtonId::EXIT + 2:
+		_GameSize = MEDIUM;
+		return nullptr;
+	case ButtonId::EXIT + 3:
+		_GameSize = BIG;
 		return nullptr;
 	}
 	return nullptr;
@@ -73,3 +85,18 @@ void Menu::Menu::createMenuButton(const std::string &name, irr::core::stringw to
 	++_btnSize, to_show.c_str(), to_show.c_str());
 }
 
+void Menu::Menu::createRightButton(const std::string &name, irr::core::stringw to_show)
+{
+	if (to_show.empty()) {
+		to_show = name.c_str();
+	}
+	irr::s32 vert = Engine::Engine::DIM_VERTICAL - 200;
+	irr::s32 horiz = Engine::Engine::DIM_HORIZONTAL - 200;
+	_guiEnv->addButton(irr::core::rect<irr::s32>(
+		horiz,
+		vert - 20 + (50 * _btnRightSize),
+		horiz + 100,
+		vert + 20 + (50 * _btnRightSize)), 0,
+		++_btnSize, to_show.c_str(), to_show.c_str());
+	++_btnRightSize;
+}
