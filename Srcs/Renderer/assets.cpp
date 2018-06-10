@@ -12,6 +12,7 @@
 #include <string>
 #include <locale>
 #include <codecvt>
+#include "Game/Character.hpp"
 
 namespace RR {
 	irr::core::vector3df m3df(float x, float y, float z)
@@ -19,11 +20,12 @@ namespace RR {
 		return irr::core::vector3df(x,y,z);
 	}
 
-	void printScore(std::string player, int score, irr::core::rect<irr::s32> rec)
+	void printScore(std::string player, int score,
+		irr::core::rect<irr::s32> rec, Game::Character *character)
 	{
 		irr::core::stringw str("player ");
 		irr::core::stringw pnum(player.c_str());
-		irr::core::stringw num(std::to_string(score).c_str());
+		irr::core::stringw num(std::to_string(character->getScore()).c_str());
 		auto device = Engine::Engine::instance()->getDevice();
 		irr::gui::IGUIFont* font =
 			device->getGUIEnvironment()->getFont(
@@ -37,11 +39,12 @@ namespace RR {
 			irr::video::SColor(255,0,0,255));
 	}
 
-	void printLife(std::string player, int life, irr::core::rect<irr::s32> rec)
+	void printLife(std::string player, int life,
+		irr::core::rect<irr::s32> rec, Game::Character *character)
 	{
 		irr::core::stringw str("player ");
 		irr::core::stringw pnum(player.c_str());
-		irr::core::stringw num(std::to_string(life).c_str());
+		irr::core::stringw num(std::to_string(character->getHP()).c_str());
 		auto device = Engine::Engine::instance()->getDevice();
 		irr::gui::IGUIFont* font =
 			device->getGUIEnvironment()->getFont(
@@ -80,15 +83,16 @@ namespace RR {
 
 		}
 
-		void setPlayerRotation(irr::scene::ISceneNode *pNode) {
+		void setPlayerRotation(irr::scene::ISceneNode *pNode,
+			Game::Character * character) {
 			auto sceneMgr =
 				Engine::Engine::instance()->getSceneManager();
-			int orientation = 1;
-			if (orientation == 0)
+			auto orientation = character->getDirection();
+			if (orientation == Game::Character::UP)
 				pNode->setRotation(RR::m3df(-90, 0, 0));
-			else if (orientation == 1)
+			else if (orientation == Game::Character::RIGHT)
 				pNode->setRotation(RR::m3df(-90, 90, 0));
-			else if (orientation == 2)
+			else if (orientation == Game::Character::DOWN)
 				pNode->setRotation(RR::m3df(-90, 180, 0));
 			else
 				pNode->setRotation(RR::m3df(-90, 270, 0));
@@ -166,7 +170,8 @@ namespace RR {
 		irr::scene::IAnimatedMesh *addPlayer(
 			irr::core::vector3df &pos,
 			irr::scene::ISceneNode *playerNode,
-			char id
+			char id,
+			Game::Character * character
 		)
 		{
 			auto sceneMgr =
@@ -181,7 +186,7 @@ namespace RR {
 			node->setID((int)id - 48);
 			node->setPosition(RR::m3df(0.0f, -5.0f, 0.0f) + pos);
 			node->setScale(RR::m3df(0.05f, 0.05f, 0.05f));
-			RR::Scene::setPlayerRotation(node);
+			RR::Scene::setPlayerRotation(node, character);
 			node->setMaterialTexture(0,
 				driver->getTexture("./models/Bombermap.tga"));
 			node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
@@ -288,13 +293,15 @@ namespace RR {
 		}
 
 		void spawnPlayer(std::vector<std::string> &rawMap, size_t size,
-			irr::scene::ISceneNode *playerNode)
+			irr::scene::ISceneNode *playerNode,
+			std::vector<Game::Character *> characters)
 		{
 			for (int j = 0; j < size; ++j) {
 				float z = 0.0f + (j * 10.0f);
 				for (int i = 0; i < size; ++i) {
 					float x = 0.0f + (i * 10.0f);
 					irr::core::vector3df pos(x,10.0f,z);
+					int id = (int)rawMap[j][i] - 48;
 					if (rawMap[j][i] == '1'
 						|| rawMap[j][i] == '2'
 						|| rawMap[j][i] == '3'
@@ -302,7 +309,8 @@ namespace RR {
 						Scene::addPlayer(
 							pos,
 							playerNode,
-							rawMap[j][i]);
+							rawMap[j][i],
+							characters[id - 1]);
 				}
 			}
 		}
@@ -335,16 +343,16 @@ namespace RR {
 			}
 		}
 
-		void drawText()
+		void drawText(std::vector<Game::Character *> characters)
 		{
-			RR::printScore("1", 23, irr::core::rect<irr::s32>(1600,10,300,50));
-			RR::printScore("2", 44, irr::core::rect<irr::s32>(40,10,300,50));
-			RR::printScore("3", 67, irr::core::rect<irr::s32>(40,950,300,50));
-			RR::printScore("4", 38, irr::core::rect<irr::s32>(1600,950,300,50));
-			RR::printLife("1", 23, irr::core::rect<irr::s32>(1600,40,300,50));
-			RR::printLife("2", 44, irr::core::rect<irr::s32>(40,40,300,50));
-			RR::printLife("3", 67, irr::core::rect<irr::s32>(40,910,300,50));
-			RR::printLife("4", 38, irr::core::rect<irr::s32>(1600,910,300,50));
+			RR::printScore("1", 23, irr::core::rect<irr::s32>(1600,10,300,50), characters[0]);
+			RR::printScore("2", 44, irr::core::rect<irr::s32>(40,10,300,50), characters[1]);
+			RR::printScore("3", 67, irr::core::rect<irr::s32>(40,950,300,50), characters[2]);
+			RR::printScore("4", 38, irr::core::rect<irr::s32>(1600,950,300,50), characters[3]);
+			RR::printLife("1", 23, irr::core::rect<irr::s32>(1600,40,300,50), characters[0]);
+			RR::printLife("2", 44, irr::core::rect<irr::s32>(40,40,300,50), characters[1]);
+			RR::printLife("3", 67, irr::core::rect<irr::s32>(40,910,300,50), characters[2]);
+			RR::printLife("4", 38, irr::core::rect<irr::s32>(1600,910,300,50), characters[3]);
 		}
 	}
 }

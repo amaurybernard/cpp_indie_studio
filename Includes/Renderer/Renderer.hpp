@@ -8,6 +8,7 @@
 #include <irrlicht/irrlicht.h>
 #include "Engine/Engine.hpp"
 #include "Game/Map.hpp"
+#include "Game/Character.hpp"
 
 namespace RR {
 	class Renderer {
@@ -27,9 +28,9 @@ namespace RR {
 
 		/* public function */
 		public:
-		void init(Game::Map &, size_t);
+		void init(Game::Map &, size_t, std::vector<Game::Character *>);
 		void gameover(int);
-		void render(Game::Map &, size_t size);
+		void render(Game::Map &, size_t size, std::vector<Game::Character *>);
 
 		/* protected attribute */
 		protected:
@@ -66,7 +67,8 @@ namespace RR {
 		void spawnPlayer(
 			std::vector<std::string> &,
 			size_t,
-			irr::scene::ISceneNode *
+			irr::scene::ISceneNode *,
+			std::vector<Game::Character *>
 		);
 
 		void spawnBomb(
@@ -83,7 +85,7 @@ namespace RR {
 
 		void setPlayerRotation(irr::scene::ISceneNode *);
 
-		void drawText();
+		void drawText(std::vector<Game::Character *>);
 
 		void spawnGround(size_t);
 		void setBaseLight();
