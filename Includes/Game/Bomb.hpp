@@ -11,7 +11,6 @@
 #include <vector>
 #include <ctime>
 #include <irrlicht/irrlicht.h>
-#include "Game/Character.hpp"
 #include "Game/Map.hpp"
 
 constexpr unsigned DEFAULT_TIMER = 3; // in seconds
@@ -19,12 +18,13 @@ constexpr unsigned DEFAULT_RANGE = 3; // in map cases
 constexpr unsigned DEFAULT_DAMAGE = 35; // in health points
 
 namespace Game {
+	class Character;
 	class Bomb {
 	public:
 		Bomb(Game::Map &map);
 		~Bomb();
 		bool placeBomb(size_t x, size_t y);
-		void explodes(std::vector<Character&> players);
+		void explodes(std::vector<Character *> players);
 		void replaceFlames(char c);
 		bool isActivated();
 	protected:

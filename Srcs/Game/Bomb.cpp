@@ -7,7 +7,6 @@
 
 #include <irrlicht/irrlicht.h>
 #include "Game/Bomb.hpp"
-#include "Game/Character.hpp"
 #include "Bomberman.hpp"
 
 Game::Bomb::Bomb(Game::Map &map)
@@ -69,7 +68,7 @@ void	Game::Bomb::replaceFlames(char c)
 	}
 }
 
-void	Game::Bomb::explodes(std::vector<Character&> players)
+void	Game::Bomb::explodes(std::vector<Character *> players)
 {
 	if (_time + 3 < std::time(nullptr)) {
 		_map.changeCase(_x, _y, 'O');

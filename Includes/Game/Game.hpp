@@ -24,8 +24,8 @@ namespace Game {
 		size_t getMapSize();
 		Character getPlayer(size_t nb);
 	private:
-		Map			_map;
-		std::vector<Character>	_player;
+		Map				_map;
+		std::vector<Character *>	_player;
 	};
 }
 

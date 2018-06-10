@@ -65,7 +65,7 @@ void Game::Character::placeBomb()
 		_bomb.placeBomb(x, y);
 }
 
-void Game::Character::testBomb(std::vector<Character> &player)
+void Game::Character::testBomb(std::vector<Character *> player)
 {
 	if (_bomb.isActivated())
 		_bomb.explodes(player);

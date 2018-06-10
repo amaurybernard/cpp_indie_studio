@@ -22,7 +22,7 @@ namespace Game {
 		~Character();
 
 		void placeBomb();
-		void testBomb(std::vector<Character> &player);
+		void testBomb(std::vector<Character *> player);
 		//bool loseHP();
 		//bool isDead();
 
