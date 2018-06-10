@@ -28,13 +28,13 @@ namespace RR {
 		irr::gui::IGUIFont* font =
 			device->getGUIEnvironment()->getFont(
 				"./textures/myfont.xml");
+		font->setKerningWidth(5);
 		str += pnum;
 		str += " score: ";
 		str += num;
-
 		font->draw(str,
 			rec,
-			irr::video::SColor(255,255,255,255));
+			irr::video::SColor(255,0,0,255));
 	}
 
 	void printLife(std::string player, int life, irr::core::rect<irr::s32> rec)
@@ -52,7 +52,7 @@ namespace RR {
 
 		font->draw(str,
 			rec,
-			irr::video::SColor(255,255,255,255));
+			irr::video::SColor(255,255,0,0));
 	}
 	namespace Scene {
 		void setBaseLight() {
