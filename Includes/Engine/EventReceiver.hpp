@@ -9,6 +9,7 @@
 #define EVENTRECEIVER_HPP
 #include <irrlicht/irrlicht.h>
 #include <vector>
+#include "Menu/BtnEnum.hpp"
 
 namespace Engine {
 	class EventReceiver : public irr::IEventReceiver {
@@ -27,6 +28,10 @@ namespace Engine {
 		void		resetKeysDown(void);
 	private: /* variables */
 		irr::IrrlichtDevice 	&_device;
+		Menu::ButtonId 		_btnId = Menu::ButtonId::NONE;
+	public:
+		Menu::ButtonId getBtnId() const;
+	private:
 		/** @var _KeysDown
 		** @copydoc http://irrlicht.sourceforge.net/docu/namespaceirr.html#a54da2a0e231901735e3da1b0edf72eb3
 		*/

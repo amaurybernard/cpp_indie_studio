@@ -10,7 +10,7 @@
 #include <vector>
 #include <string>
 #include <irrlicht/irrlicht.h>
-#include "EventReceiver.hpp"
+#include "Engine/EventReceiver.hpp"
 
 /** The Engine class keep all basic object needed by the graphical library */
 namespace Engine {

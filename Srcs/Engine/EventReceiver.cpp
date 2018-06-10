@@ -20,6 +20,9 @@ bool Engine::EventReceiver::OnEvent(const irr::SEvent &event)
 			_keysDown[event.KeyInput.Key] = event.KeyInput.PressedDown;
 		if (event.KeyInput.Key == irr::KEY_ESCAPE && event.KeyInput.PressedDown)
 			_device.closeDevice();
+	} else if (event.EventType == irr::EET_GUI_EVENT
+	&& event.GUIEvent.EventType == irr::gui::EGET_BUTTON_CLICKED) {
+		_btnId = (Menu::ButtonId) event.GUIEvent.Caller->getID();
 	}
 	return false;
 }
@@ -39,4 +42,9 @@ void Engine::EventReceiver::resetKeysDown(void)
 void Engine::EventReceiver::update(void)
 {
 	this->resetKeysDown();
+}
+
+Menu::ButtonId Engine::EventReceiver::getBtnId() const
+{
+	return _btnId;
 }
