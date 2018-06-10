@@ -28,7 +28,7 @@ int 	main(void)
 		if (engine->getDevice()->isWindowActive()) {
 			renderer.render(game.getMap(), game.getMapSize());
 		}
-//		map.putMap();
+		game.getMap().putMap();
 //		player1.move(*engine);
 //		player1.testBomb();
 //		if (engine->getEventReceiver()->isKeyDown(irr::KEY_SPACE))

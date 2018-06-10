@@ -12,10 +12,13 @@
 Game::Game::Game(size_t nbPlayer, size_t mapSize, size_t density)
 	: _map(mapSize, density)
 {
-//	this->_player1 = new Game::Character(_map, 1, mapSize);
-//	this->_player2(_map, 2, mapSize);
-//	this->_player3(_map, 3, mapSize);
-//	this->_player4(_map, 4, mapSize);
+	bool human2 = true;
+	_player.push_back(*(new Character(_map, 1, true)));
+	if (nbPlayer == 1)
+		human2 = false;
+	_player.push_back(*(new Character(_map, 2, human2)));
+	_player.push_back(*(new Character(_map, 3, false)));
+	_player.push_back(*(new Character(_map, 4, false)));
 }
 
 Game::Game::~Game()

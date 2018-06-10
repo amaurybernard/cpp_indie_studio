@@ -11,8 +11,8 @@
 #include "Game/Character.hpp"
 #include "Bomberman.hpp"
 
-Game::Character::Character(Game::Map &map, size_t nb)
-	: _map(map), _bomb(map), _nb(nb), _hp(DEFAULT_HP)
+Game::Character::Character(Game::Map &map, size_t nb, bool human)
+	: _map(map), _bomb(map), _nb(nb), _hp(DEFAULT_HP), _human(human)
 {
 	switch (nb) {
         case 1: _x = 1;
@@ -33,6 +33,8 @@ Game::Character::Character(Game::Map &map, size_t nb)
                 break;
         }
 	_map.addPlayer(_x, _y, nb);
+	// if (!_human)
+	//	startIA();
 }
 
 Game::Character::~Character()
