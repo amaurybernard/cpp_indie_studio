@@ -73,9 +73,9 @@ bool Game::Character::move(Engine::Engine &engine)
 		return moveUp();
 	else if (engine.getEventReceiver()->isKeyDown(irr::KEY_DOWN))
 		return moveDown();
-	else if (engine.getEventReceiver()->isKeyDown(irr::KEY_RIGHT))
-		return moveRight();
 	else if (engine.getEventReceiver()->isKeyDown(irr::KEY_LEFT))
+		return moveRight();
+	else if (engine.getEventReceiver()->isKeyDown(irr::KEY_RIGHT))
 		return moveLeft();
 	return false;
 }
