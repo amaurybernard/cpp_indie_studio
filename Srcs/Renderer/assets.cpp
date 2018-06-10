@@ -272,7 +272,7 @@ namespace RR {
 				for (int i = 0; i < size; ++i) {
 					float x = 0.0f + (i * 10.0f);
 					irr::core::vector3df pos(x,10.0f,z);
-					if (rawMap[j][i] == 'O')
+					if (rawMap[j][i] == 'f')
 						Scene::addWallCube(pos);
 				}
 			}
