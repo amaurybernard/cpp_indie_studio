@@ -45,7 +45,7 @@ size_t Game::Game::loop(Engine::Engine &engine)
 		if (player->getHP() == 0) {
 			if (i == 2 && !player->isHuman()) {
 				return 0;
-			} else if (i == 3 && !player->isHuman() && _player[0]->getHp() == 0) {
+			} else if (i == 3 && !player->isHuman() && _player[0]->getHP() == 0) {
 				return 1;
 			}
 
