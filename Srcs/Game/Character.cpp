@@ -93,7 +93,7 @@ void Game::Character::testBomb(std::vector<Character *> player)
 
 bool Game::Character::loseHP(size_t damages)
 {
-	if (_lastDamage != std::time(nullptr)) {
+	if (_lastDamage + 2 < std::time(nullptr)) {
 		if (damages >= _hp || _hp > 100 || _hp == 0) {
 			_hp = 0;
 			return true;
