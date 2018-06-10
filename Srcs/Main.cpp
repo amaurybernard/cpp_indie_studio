@@ -31,8 +31,11 @@ int 	main(void)
 
 	while(engine->keepLooping()) {
 		if (game) {
-			if (!rendererInit)
-				renderer.init(game->getMap(), game->getMapSize());
+			if (!rendererInit) {
+				renderer.init(game->getMap(),
+					game->getMapSize());
+				rendererInit = true;
+			}
 			if (engine->getDevice()->isWindowActive()) {
 				renderer.render(game->getMap(),
 					game->getMapSize());
