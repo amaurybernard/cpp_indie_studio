@@ -12,7 +12,14 @@ Menu::Menu::Menu(void)
 {
 	this->createButton();
 	_engine->getDriver()->beginScene(true, true,
-		irr::video::SColor(1, 82, 108, 152));
+	irr::video::SColor(0, 0, 0, 0));
+	irr::video::ITexture* images =
+	_engine->getDriver()->getTexture("./textures/background.jpg");
+	_engine->getDriver()->draw2DImage(images,
+	irr::core::position2d<irr::s32>(0,0),
+	irr::core::rect<irr::s32>(0,0, Engine::Engine::DIM_HORIZONTAL,
+	Engine::Engine::DIM_HORIZONTAL), 0,
+	irr::video::SColor(255,255,255,255), true);
 	_engine->getSceneManager()->drawAll();
 	_guiEnv->drawAll();
 	_engine->getDriver()->endScene();
