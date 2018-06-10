@@ -10,7 +10,7 @@
 #include <vector>
 #include <string>
 #include <irrlicht/irrlicht.h>
-#include "EventReceiver.hpp"
+#include "Engine/EventReceiver.hpp"
 
 /** The Engine class keep all basic object needed by the graphical library */
 namespace Engine {
@@ -34,12 +34,13 @@ namespace Engine {
 		/* @Return true in case of error */
 		bool saveGame(const std::vector<std::string> map, std::string name = "");
 
+	public:
+		static constexpr irr::u32 		DIM_VERTICAL = 1080;
+		static constexpr irr::u32		DIM_HORIZONTAL = 1920;
 	private:
 		static Engine				*_instance;
 		static constexpr irr::video::E_DRIVER_TYPE VIDEO_TYPE
 		= irr::video::EDT_OPENGL;
-		static constexpr irr::u32 		DIM_VERTICAL = 1080;
-		static constexpr irr::u32		DIM_HORIZONTAL = 1920;
 		static constexpr char	SAVEDGAMES_DIR[] = "SavedGames/";
 		irr::IrrlichtDevice			*_device;
 		EventReceiver				_EventReceiver;

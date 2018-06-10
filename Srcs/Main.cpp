@@ -8,6 +8,8 @@
 #include <vector>
 #include <string>
 #include <irrlicht/irrlicht.h>
+#include <Game/Game.hpp>
+#include <Menu/Menu.hpp>
 #include "Engine/EventReceiver.hpp"
 #include "Engine/Engine.hpp"
 #include "Renderer/Renderer.hpp"
@@ -26,17 +28,23 @@ int 	main(void)
 	Game::Character		player2(map, 2, mapSize);
 	Game::Character		player3(map, 3, mapSize);
 	Game::Character		player4(map, 4, mapSize);
+	Game::Game		*game = nullptr;
+	Menu::Menu			menu;
 
 	renderer.init(map, mapSize);
 	while(engine->keepLooping()) {
-		if (engine->getDevice()->isWindowActive()) {
-			renderer.render(map, mapSize);
+		if (game) {
+			if (engine->getDevice()->isWindowActive()) {
+				renderer.render(map, mapSize);
+			}
+			player1.move(*engine);
+			player1.testBomb();
+			if (engine->getEventReceiver()->isKeyDown(
+				irr::KEY_SPACE))
+				player1.placeBomb();
+		} else {
+			game = menu.getSelectedGame();
 		}
-		//map.putMap();
-                player1.move(*engine);
-                player1.testBomb();
-                if (engine->getEventReceiver()->isKeyDown(irr::KEY_SPACE))
-                        player1.placeBomb();
 	}
 	engine->drop();
 	return (RT_SUCCESS);
