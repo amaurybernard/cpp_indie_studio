@@ -25,8 +25,10 @@ namespace Game {
 		void testBomb(std::vector<Character *> player);
 		bool loseHP(size_t damage);
 		bool isDead();
+		bool isHuman();
 
 		bool move(Engine::Engine &engine);
+		bool move(Engine::Engine &engine, int i);
 		bool moveUp();
 		bool moveDown();
 		bool moveRight();

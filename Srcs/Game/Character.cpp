@@ -43,6 +43,11 @@ Game::Character::~Character()
 {
 }
 
+bool Game::Character::isHuman()
+{
+	return _human;
+}
+
 Game::Character::Oriented Game::Character::getDirection()
 {
 	return _direction;
@@ -110,6 +115,23 @@ bool Game::Character::move(Engine::Engine &engine)
 	else if (engine.getEventReceiver()->isKeyDown(irr::KEY_LEFT))
 		return moveRight();
 	else if (engine.getEventReceiver()->isKeyDown(irr::KEY_RIGHT))
+		return moveLeft();
+	return false;
+}
+
+bool Game::Character::move(Engine::Engine &engine, int i)
+{
+	if (i == -1)
+		i = i + 1;
+	if (engine.getEventReceiver()->isKeyDown(irr::KEY_KEY_Z) ||
+	    engine.getEventReceiver()->isKeyDown(irr::KEY_KEY_W))
+		return moveUp();
+	else if (engine.getEventReceiver()->isKeyDown(irr::KEY_KEY_S))
+		return moveDown();
+	else if (engine.getEventReceiver()->isKeyDown(irr::KEY_KEY_Q) ||
+		 engine.getEventReceiver()->isKeyDown(irr::KEY_KEY_A))
+		return moveRight();
+	else if (engine.getEventReceiver()->isKeyDown(irr::KEY_KEY_D))
 		return moveLeft();
 	return false;
 }

@@ -30,10 +30,16 @@ Game::Game::~Game()
 
 void Game::Game::loop(Engine::Engine &engine)
 {
-	_player[0]->move(engine);
+	_player[0]->move(engine, 1);
 	_player[0]->testBomb(_player);
-	if (engine.getEventReceiver()->isKeyDown(irr::KEY_SPACE))
+	if (engine.getEventReceiver()->isKeyDown(irr::KEY_KEY_X))
 		_player[0]->placeBomb();
+	if (_player[1]->isHuman()) {
+		_player[1]->move(engine);
+		_player[1]->testBomb(_player);
+		if (engine.getEventReceiver()->isKeyDown(irr::KEY_SPACE))
+			_player[1]->placeBomb();
+	}
 }
 
 Game::Character Game::Game::getPlayer(size_t nb)
