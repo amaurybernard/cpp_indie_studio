@@ -35,7 +35,7 @@ void Menu::Menu::createButtons()
 	createMenuButton("Exit");
 	createRightButton("Low Level");
 	createRightButton("Medium Level");
-	createRightButton("hight Level");
+	createRightButton("Hard Level");
 }
 
 Game::Game *Menu::Menu::getSelectedGame(void)
@@ -90,13 +90,14 @@ void Menu::Menu::createRightButton(const std::string &name, irr::core::stringw t
 	if (to_show.empty()) {
 		to_show = name.c_str();
 	}
-	irr::s32 vert = Engine::Engine::DIM_VERTICAL - 200;
-	irr::s32 horiz = Engine::Engine::DIM_HORIZONTAL - 200;
+	irr::s32 vert = Engine::Engine::DIM_VERTICAL - 800;
+	irr::s32 horiz = Engine::Engine::DIM_HORIZONTAL - 250;
 	_guiEnv->addButton(irr::core::rect<irr::s32>(
 		horiz,
-		vert - 20 + (50 * _btnRightSize),
-		horiz + 100,
-		vert + 20 + (50 * _btnRightSize)), 0,
+		vert + (75 * _btnSize),
+		horiz + 120,
+		vert + 50 + (75 * _btnSize)), 0,
 		++_btnSize, to_show.c_str(), to_show.c_str());
 	++_btnRightSize;
 }
+
