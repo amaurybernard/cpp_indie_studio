@@ -180,8 +180,8 @@ namespace RR {
 			irr::scene::ISceneNode* node =
 				sceneMgr->addAnimatedMeshSceneNode(newBomb,
 					bombNode);
-			node->setPosition(RR::m3df(4.0f, -5.0f, 0.0f) + pos);
-			node->setScale(RR::m3df(3.0f, 3.0f, 3.0f));
+			node->setPosition(RR::m3df(0.0f, -5.0f, 0.0f) + pos);
+			node->setScale(RR::m3df(5.0f, 5.0f, 5.0f));
 			node->setMaterialTexture(0,
 				driver->getTexture("./models/bombbody_BaseColor.png"));
 			//sceneMgr->getMeshManipulator()->makePlanarTextureMapping(newBomb->getMesh(0),0.004f);
