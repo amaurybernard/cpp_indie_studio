@@ -11,7 +11,7 @@
 #include "Game/Character.hpp"
 #include "Bomberman.hpp"
 
-Game::Character::Character(Game::Map &map, size_t nb, size_t mapSize)
+Game::Character::Character(Game::Map &map, size_t nb)
 	: _map(map), _bomb(map), _nb(nb), _hp(DEFAULT_HP)
 {
 	switch (nb) {
@@ -19,16 +19,16 @@ Game::Character::Character(Game::Map &map, size_t nb, size_t mapSize)
 		_y = 1;
 		_direction = Game::Character::Oriented::DOWN;
 	        break;
-        case 2: _x = mapSize;
+        case 2: _x = map.getSize();
 		_y = 1;
 		_direction = Game::Character::Oriented::LEFT;
                 break;
         case 3: _x = 1;
-		_y = mapSize;
+		_y = map.getSize();
 		_direction = Game::Character::Oriented::UP;
 		break;
-        case 4: _x = mapSize;
-		_y = mapSize;
+        case 4: _x = map.getSize();
+		_y = map.getSize();
 		_direction = Game::Character::Oriented::RIGHT;
                 break;
         }

@@ -8,16 +8,21 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
+#include <vector>
 #include <irrlicht/irrlicht.h>
 #include "Game/Character.hpp"
 #include "Game/Map.hpp"
 
 namespace Game {
 	class Game {
-
 	public:
-		Game();
+		Game(size_t nbPlayer, size_t mapSize, size_t density);
 		~Game();
+		Map &getMap();
+		size_t getMapSize();
+	private:
+		Map			_map;
+		std::vector <Character>	_player;
 	};
 }
 

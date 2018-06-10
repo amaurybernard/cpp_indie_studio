@@ -27,8 +27,9 @@ namespace Game {
 	class Map {
 
 	public:
-		Map(size_t size);
+		Map(size_t size, size_t density);
 		~Map();
+		size_t getSize();
 		void createMap();
 		void generateBlocks(size_t density);
 		void resetMap();
