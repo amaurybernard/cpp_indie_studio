@@ -43,13 +43,11 @@ namespace RR {
 	void Renderer::setEngine(Engine::Engine &engine)
 	{
 		mEngine;
-		//mEngine = engine; quand amaury aura implementer la forme canonique
 	}
 
 	Renderer &Renderer::operator=(const Renderer &renderer)
 	{
 		return *this;
-		//return mEngine = renderer.mEngine; quand amaury aura implementer la forme canonique
 	}
 
 	void Renderer::gameover(int winnerNum)
