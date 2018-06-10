@@ -20,11 +20,11 @@ namespace Game {
 	public:
 		Character(Game::Map &map, size_t nb, bool human);
 		~Character();
-
+		
 		void placeBomb();
 		void testBomb(std::vector<Character *> player);
-		//bool loseHP();
-		//bool isDead();
+		bool loseHP(size_t damage);
+		bool isDead();
 
 		bool move(Engine::Engine &engine);
 		bool moveUp();
@@ -38,6 +38,11 @@ namespace Game {
 			RIGHT ,
 			LEFT ,
 		};
+
+		Oriented getDirection();
+		size_t	getHP();
+		size_t	getScore();
+
 	protected:
 		Map		&_map;	// Playing map
 		Bomb		_bomb; // Player's Bomb
