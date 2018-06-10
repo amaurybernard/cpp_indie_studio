@@ -40,7 +40,9 @@ namespace RR {
 		irr::video::SColor mBackColor;
 		irr::scene::ISceneNode *mBoxNode;
 		irr::scene::ISceneNode *mPlayerNode;
-
+		irr::scene::ISceneNode *mBombNode;
+		irr::scene::ISceneNode *mFlameNode;
+		irr::video::ITexture *mBackground;
 	};
 
 	namespace Scene {
@@ -64,6 +66,20 @@ namespace RR {
 			size_t,
 			irr::scene::ISceneNode *
 		);
+
+		void spawnBomb(
+			std::vector<std::string> &,
+			size_t,
+			irr::scene::ISceneNode *
+		);
+
+		void spawnFlame(
+			std::vector<std::string> &,
+			size_t,
+			irr::scene::ISceneNode *
+		);
+
+		void drawText();
 
 		void spawnGround(size_t);
 		void setBaseLight();
