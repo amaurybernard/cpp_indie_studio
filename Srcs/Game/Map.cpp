@@ -76,7 +76,12 @@ void	Game::Map::resetMap()
 	_map = _tmp;
 }
 
-std::vector<std::string>	Game::Map::getMap()
+size_t	Game::Map::getCase(size_t x, size_t y)
+{
+	return (_map[y][x]);
+}
+
+std::vector<std::string> Game::Map::getMap()
 {
 	return (_map);
 }
@@ -105,10 +110,22 @@ bool	Game::Map::moveCharacter(size_t player_nb, size_t x1, size_t y1, size_t x2,
 	return false;
 }
 
-bool	Game::Map::breakBlock(size_t x, size_t y)
+void Game::Map::changeCase(size_t x, size_t y, char c)
 {
-	if (_map[y][x] == 'X') {
-		_map[y][x] = ' ';
+	if ((x > 0 && x < _size) &&
+	    (y > 0 && y < _size))
+		if (_map[y][x] != '1' &&
+		    _map[y][x] != '2' &&
+		    _map[y][x] != '3' &&
+		    _map[y][x] != '4' &&
+		    _map[y][x] != '#')
+			_map[y][x] = c;
+}
+
+bool	Game::Map::placeBomb(size_t x, size_t y)
+{
+	if (!isBlocked(x, y)) {
+		_map[y][x] = 'o';
 		return true;
 	}
 	return false;

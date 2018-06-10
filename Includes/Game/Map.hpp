@@ -32,11 +32,16 @@ namespace Game {
 		void createMap();
 		void generateBlocks(size_t density);
 		void resetMap();
+		size_t getCase(size_t x, size_t y);
 		std::vector<std::string> getMap();
 		void putMap();
+
 		bool isBlocked(size_t x, size_t y);
 		bool moveCharacter(size_t player_nb, size_t x1, size_t y1, size_t x2, size_t y2);
-		bool breakBlock(size_t x, size_t y);
+
+		bool placeBomb(size_t x, size_t y);
+		void changeCase(size_t x, size_t y, char c);
+
 		bool addPlayer(size_t player_nb);
 		bool addPlayer(size_t x, size_t y, size_t player_nb);
 	private:
