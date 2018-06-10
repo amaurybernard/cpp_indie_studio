@@ -43,6 +43,8 @@ namespace RR {
 		irr::scene::ISceneNode *mBombNode;
 		irr::scene::ISceneNode *mFlameNode;
 		irr::video::ITexture *mBackground;
+		irr::scene::IAnimatedMesh* mBombMesh;
+		irr::video::ITexture *mBombTexture;
 	};
 
 	namespace Scene {

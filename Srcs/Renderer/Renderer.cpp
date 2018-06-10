@@ -17,7 +17,9 @@ namespace RR {
 		mPlayerNode(nullptr),
 		mBombNode(nullptr),
 		mFlameNode(nullptr),
-		mBackground(nullptr)
+		mBackground(nullptr),
+		mBombMesh(nullptr),
+		mBombTexture(nullptr)
 	{
 		mSceneMgr.addEmptySceneNode(nullptr, 1);
 		mSceneMgr.addEmptySceneNode(nullptr, 2);
@@ -28,6 +30,8 @@ namespace RR {
 		mBombNode = mSceneMgr.getSceneNodeFromId(3, nullptr);
 		mFlameNode = mSceneMgr.getSceneNodeFromId(4, nullptr);
 		mBackground = mDriver.getTexture("./textures/background.jpg");
+		mBombMesh = mSceneMgr.getMesh("./models/bomb.obj");
+		mBombTexture = mDriver.getTexture("./models/bombbody_BaseColor.png");
 		//destructor
 	}
 
