@@ -52,8 +52,9 @@ namespace Game {
 		size_t		_x;	// X Position
 		size_t		_y;	// Y Position
 		size_t		_hp;	// Health Points
+		time_t       _lastDamage = 0;
 		Oriented	_direction; // Face direction
-		long		_score; // score of the player
+		long		_score = 0; // score of the player
 		bool		_human; // is a human or an iA ?
 	};
 }
