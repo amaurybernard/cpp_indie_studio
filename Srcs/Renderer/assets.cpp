@@ -19,15 +19,16 @@ namespace RR {
 		return irr::core::vector3df(x,y,z);
 	}
 
-	void printScore(char *player, int score, irr::core::rect<irr::s32> rec)
+	void printScore(std::string player, int score, irr::core::rect<irr::s32> rec)
 	{
 		irr::core::stringw str("player ");
+		irr::core::stringw pnum(player.c_str());
 		irr::core::stringw num(std::to_string(score).c_str());
 		auto device = Engine::Engine::instance()->getDevice();
 		irr::gui::IGUIFont* font =
 			device->getGUIEnvironment()->getFont(
 				"./textures/myfont.xml");
-		str += player;
+		str += pnum;
 		str += " score: ";
 		str += num;
 
@@ -36,15 +37,16 @@ namespace RR {
 			irr::video::SColor(255,255,255,255));
 	}
 
-	void printLife(char *player, int life, irr::core::rect<irr::s32> rec)
+	void printLife(std::string player, int life, irr::core::rect<irr::s32> rec)
 	{
 		irr::core::stringw str("player ");
+		irr::core::stringw pnum(player.c_str());
 		irr::core::stringw num(std::to_string(life).c_str());
 		auto device = Engine::Engine::instance()->getDevice();
 		irr::gui::IGUIFont* font =
 			device->getGUIEnvironment()->getFont(
 				"./textures/myfont.xml");
-		str += player;
+		str += pnum;
 		str += " life: ";
 		str += num;
 

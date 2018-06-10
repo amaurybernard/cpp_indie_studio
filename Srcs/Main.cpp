@@ -32,7 +32,7 @@ int 	main(void)
 		if (engine->getDevice()->isWindowActive()) {
 			renderer.render(map, mapSize);
 		}
-		map.putMap();
+		//map.putMap();
                 player1.move(*engine);
                 player1.testBomb();
                 if (engine->getEventReceiver()->isKeyDown(irr::KEY_SPACE))
