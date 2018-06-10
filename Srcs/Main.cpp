@@ -20,7 +20,7 @@ int 	main(void)
 {
 	Engine::Engine		*engine = Engine::Engine::instance();
 	RR::Renderer		renderer(*engine);
-	size_t			mapSize = MEDIUM;
+	size_t			mapSize = BIG;
 	Game::Map		map(mapSize);
 	Game::Character		player1(map, 1, mapSize);
 	Game::Character		player2(map, 2, mapSize);
