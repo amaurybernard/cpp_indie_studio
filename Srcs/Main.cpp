@@ -14,6 +14,7 @@
 #include "Bomberman.hpp"
 
 #include "Game/Game.hpp"
+#include "Game/Bomb.hpp"
 #include "Game/Character.hpp"
 #include "Game/Map.hpp"
 

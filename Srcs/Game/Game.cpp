@@ -28,7 +28,7 @@ Game::Game::~Game()
 void Game::Game::loop(Engine::Engine &engine)
 {
 	_player[0].move(engine);
-	_player[0].testBomb();
+	_player[0].testBomb(_player);
 
 	if (engine.getEventReceiver()->isKeyDown(irr::KEY_SPACE))
 		_player[0].placeBomb();

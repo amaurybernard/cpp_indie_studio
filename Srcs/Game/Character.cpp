@@ -11,6 +11,8 @@
 #include "Game/Character.hpp"
 #include "Bomberman.hpp"
 
+#include <iostream>
+
 Game::Character::Character(Game::Map &map, size_t nb, bool human)
 	: _map(map), _bomb(map), _nb(nb), _hp(DEFAULT_HP), _human(human)
 {
@@ -63,11 +65,12 @@ void Game::Character::placeBomb()
 		_bomb.placeBomb(x, y);
 }
 
-void Game::Character::testBomb()
+void Game::Character::testBomb(std::vector<Character> &player)
 {
 	if (_bomb.isActivated())
-		_bomb.explodes();
+		_bomb.explodes(player);
 }
+
 
 bool Game::Character::move(Engine::Engine &engine)
 {
