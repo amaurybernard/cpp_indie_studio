@@ -65,7 +65,6 @@ namespace RR {
 		mBoxNode->removeAll();
 		mPlayerNode->removeAll();
 		mBombNode->removeAll();
-		mFlameNode->removeAll();
 		RR::Scene::spawnBox(rawMap, size + 2, mBoxNode);
 		RR::Scene::spawnPlayer(rawMap, size + 2, mPlayerNode);
 		RR::Scene::spawnBomb(rawMap, size + 2, mBombNode);
