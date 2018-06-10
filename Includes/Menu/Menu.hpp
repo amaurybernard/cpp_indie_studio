@@ -19,11 +19,12 @@ namespace Menu {
 		Menu(void);
 		Game::Game *getSelectedGame(void);
 	private:
-		void createButton();
+		void createMenuButton(const std::string &name,  irr::core::stringw to_show = L"");
+		void createButtons();
 		Engine::Engine *_engine = Engine::Engine::instance();
 		/** Contain menu's buttons */
 		irr::gui::IGUIEnvironment *_guiEnv = _engine->getDevice()->getGUIEnvironment();
-		size_t _btnSize;
+		size_t _btnSize = 0;
 	};
 }
 #endif /* !CPP_INDIE_STUDIO_MENU_HPP*/

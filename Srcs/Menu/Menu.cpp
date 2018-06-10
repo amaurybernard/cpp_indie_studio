@@ -10,7 +10,7 @@
 
 Menu::Menu::Menu(void)
 {
-	this->createButton();
+	this->createButtons();
 	_engine->getDriver()->beginScene(true, true,
 	irr::video::SColor(0, 0, 0, 0));
 	irr::video::ITexture* images =
@@ -25,20 +25,14 @@ Menu::Menu::Menu(void)
 	_engine->getDriver()->endScene();
 }
 
-/* todo everything: take a vector<string> */
-void Menu::Menu::createButton()
+/* Order have to correspond with btnEnm until it was replace by a map*/
+void Menu::Menu::createButtons()
 {
-	_btnSize = 5;
-	_guiEnv->addButton(irr::core::rect<irr::s32>(100, 100, 500, 180), 0,
-		ButtonId::PLAY_KB, L"Play at 2", L"1 PLAYER");
-	_guiEnv->addButton(irr::core::rect<irr::s32>(100, 100, 500, 180), 0,
-		ButtonId::PLAY_IA, L"PLAY with IA", L"1 PLAYER");
-	_guiEnv->addButton(irr::core::rect<irr::s32>(100, 200, 500, 280), 0,
-		ButtonId::PLAY_LAN, L"Play on LAN", L"MULTIPLAYER");
-	_guiEnv->addButton(irr::core::rect<irr::s32>(100, 300, 500, 380), 0,
-		ButtonId::BACKUP, L"Play from Backup", L"BACKUP");
-	_guiEnv->addButton(irr::core::rect<irr::s32>(100, 400, 500, 480), 0,
-		ButtonId ::EXIT, L"EXIT", L"EXIT");
+	createMenuButton("Play at 2");
+	createMenuButton("PLAY with IA");
+	createMenuButton("Play on LAN");
+	createMenuButton("Play from Backup");
+	createMenuButton("Exit");
 }
 
 Game::Game *Menu::Menu::getSelectedGame(void)
@@ -64,3 +58,18 @@ Game::Game *Menu::Menu::getSelectedGame(void)
 	}
 	return nullptr;
 }
+
+void Menu::Menu::createMenuButton(const std::string &name, irr::core::stringw to_show)
+{
+	if (to_show.empty()) {
+		to_show = name.c_str();
+	}
+	irr::s32 vert = 100;
+	_guiEnv->addButton(irr::core::rect<irr::s32>(
+		Engine::Engine::DIM_HORIZONTAL/2 - 300,
+		vert - 50 + (150 * _btnSize),
+		Engine::Engine::DIM_HORIZONTAL/2 + 300,
+		vert + 50 + (150 * _btnSize)), 0,
+	++_btnSize, to_show.c_str(), to_show.c_str());
+}
+
