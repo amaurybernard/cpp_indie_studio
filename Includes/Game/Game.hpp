@@ -23,6 +23,7 @@ namespace Game {
 		void	loop(Engine::Engine &engine);
 		size_t getMapSize();
 		Character getPlayer(size_t nb);
+		std::vector<Character *> getPlayers();
 	private:
 		Map				_map;
 		std::vector<Character *>	_player;

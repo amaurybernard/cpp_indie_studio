@@ -43,6 +43,21 @@ Game::Character::~Character()
 {
 }
 
+Game::Character::Oriented Game::Character::getDirection()
+{
+	return _direction;
+}
+
+size_t Game::Character::getHP()
+{
+	return _hp;
+}
+
+size_t Game::Character::getScore()
+{
+	return _score;
+}
+
 void Game::Character::placeBomb()
 {
 	size_t x = _x;
@@ -71,6 +86,20 @@ void Game::Character::testBomb(std::vector<Character *> player)
 		_bomb.explodes(player);
 }
 
+bool Game::Character::loseHP(size_t damages)
+{
+	_hp -= damages;
+	if (_hp <= 0)
+		return true;
+	return false;
+}
+
+bool Game::Character::isDead()
+{
+	if (_hp <= 0)
+		return true;
+	return false;
+}
 
 bool Game::Character::move(Engine::Engine &engine)
 {

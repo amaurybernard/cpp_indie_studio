@@ -41,6 +41,11 @@ Game::Character Game::Game::getPlayer(size_t nb)
 	return *_player[nb];
 }
 
+std::vector<Game::Character *> Game::Game::getPlayers()
+{
+	return (_player);
+}
+
 Game::Map &Game::Game::getMap()
 {
 	return _map;

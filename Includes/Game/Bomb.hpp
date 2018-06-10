@@ -25,7 +25,7 @@ namespace Game {
 		~Bomb();
 		bool placeBomb(size_t x, size_t y);
 		void explodes(std::vector<Character *> players);
-		void replaceFlames(char c);
+		void replaceFlames(char c, std::vector<Character *> players);
 		bool isActivated();
 	protected:
 		Map		&_map;	// Playing map
