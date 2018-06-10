@@ -18,11 +18,11 @@ constexpr unsigned DEFAULT_HP = 100;
 namespace Game {
 	class Character {
 	public:
-		Character(Game::Map &map, size_t nb, size_t mapSize);
+		Character(Game::Map &map, size_t nb, bool human);
 		~Character();
 
 		void placeBomb();
-		void testBomb();
+		void testBomb(std::vector<Character *> player);
 		//bool loseHP();
 		//bool isDead();
 
@@ -47,7 +47,8 @@ namespace Game {
 		size_t		_hp;	// Health Points
 		Oriented	_direction; // Face direction
 		long		_score; // score of the player
+		bool		_human; // is a human or an iA ?
 	};
 }
 
-#endif // GAME_HPP
+#endif // CHARACTER_HPP

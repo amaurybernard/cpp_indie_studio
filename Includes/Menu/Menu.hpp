@@ -11,6 +11,7 @@
 #include <irrlicht/IGUIEnvironment.h>
 #include <Engine/Engine.hpp>
 #include "Menu/BtnEnum.hpp"
+#include "Game/Game.hpp"
 
 namespace Menu {
 

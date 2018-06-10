@@ -41,16 +41,16 @@ Game::Game *Menu::Menu::getSelectedGame(void)
 	switch (btn)
 	{
 	case ButtonId::PLAY_KB:
-		return new Game::Game();
+		return new Game::Game(2, MEDIUM, DENSITY_MEDIUM);
 	case ButtonId::PLAY_IA:
-		return new Game::Game();
+		return new Game::Game(1, MEDIUM, DENSITY_MEDIUM);
 		break;
 	case ButtonId::PLAY_LAN:
-		return new Game::Game();
+		return new Game::Game(1, SMALL, DENSITY_MEDIUM);
 		break;
 	case ButtonId::BACKUP:
 		//Change the screen and show an other menu
-		return new Game::Game();
+		return new Game::Game(1, BIG, DENSITY_MEDIUM);
 		break;
 	case ButtonId::EXIT:
 		_engine->getDevice()->closeDevice();

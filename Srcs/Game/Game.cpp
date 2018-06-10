@@ -7,14 +7,46 @@
 
 #include <irrlicht/irrlicht.h>
 #include "Game/Game.hpp"
-#include "Game/Character.hpp"
-#include "Game/Map.hpp"
 #include "Bomberman.hpp"
 
-Game::Game::Game()
+Game::Game::Game(size_t nbPlayer, size_t mapSize, size_t density)
+	: _map(mapSize, density)
 {
+	bool human2 = true;
+	_player.push_back(new Character(_map, 1, true));
+	if (nbPlayer == 1)
+		human2 = false;
+	_player.push_back(new Character(_map, 2, human2));
+	_player.push_back(new Character(_map, 3, false));
+	_player.push_back(new Character(_map, 4, false));
 }
 
 Game::Game::~Game()
 {
+	for (Character *player : _player) {
+		delete(player);
+	}
+}
+
+void Game::Game::loop(Engine::Engine &engine)
+{
+	_player[0]->move(engine);
+	_player[0]->testBomb(_player);
+	if (engine.getEventReceiver()->isKeyDown(irr::KEY_SPACE))
+		_player[0]->placeBomb();
+}
+
+Game::Character Game::Game::getPlayer(size_t nb)
+{
+	return *_player[nb];
+}
+
+Game::Map &Game::Game::getMap()
+{
+	return _map;
+}
+
+size_t Game::Game::getMapSize()
+{
+	return _map.getSize();
 }

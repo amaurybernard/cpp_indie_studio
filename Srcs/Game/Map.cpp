@@ -12,11 +12,11 @@
 #include "Game/Map.hpp"
 #include "Bomberman.hpp"
 
-Game::Map::Map(size_t size)
+Game::Map::Map(size_t size, size_t density)
 	: _size(size)
 {
 	createMap();
-	generateBlocks(DENSITY_MEDIUM);
+	generateBlocks(density);
 	_tmp = _map;
 }
 
@@ -29,6 +29,11 @@ Game::Map::~Map()
 	}
 	_map.clear();
 	_tmp.clear();
+}
+
+size_t	Game::Map::getSize()
+{
+	return _size;
 }
 
 void Game::Map::createMap()

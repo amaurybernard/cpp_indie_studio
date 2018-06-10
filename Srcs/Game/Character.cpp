@@ -11,28 +11,32 @@
 #include "Game/Character.hpp"
 #include "Bomberman.hpp"
 
-Game::Character::Character(Game::Map &map, size_t nb, size_t mapSize)
-	: _map(map), _bomb(map), _nb(nb), _hp(DEFAULT_HP)
+#include <iostream>
+
+Game::Character::Character(Game::Map &map, size_t nb, bool human)
+	: _map(map), _bomb(map), _nb(nb), _hp(DEFAULT_HP), _human(human)
 {
 	switch (nb) {
         case 1: _x = 1;
 		_y = 1;
 		_direction = Game::Character::Oriented::DOWN;
 	        break;
-        case 2: _x = mapSize;
+        case 2: _x = map.getSize();
 		_y = 1;
 		_direction = Game::Character::Oriented::LEFT;
                 break;
         case 3: _x = 1;
-		_y = mapSize;
+		_y = map.getSize();
 		_direction = Game::Character::Oriented::UP;
 		break;
-        case 4: _x = mapSize;
-		_y = mapSize;
+        case 4: _x = map.getSize();
+		_y = map.getSize();
 		_direction = Game::Character::Oriented::RIGHT;
                 break;
         }
 	_map.addPlayer(_x, _y, nb);
+	// if (!_human)
+	//	startIA();
 }
 
 Game::Character::~Character()
@@ -61,11 +65,12 @@ void Game::Character::placeBomb()
 		_bomb.placeBomb(x, y);
 }
 
-void Game::Character::testBomb()
+void Game::Character::testBomb(std::vector<Character *> player)
 {
 	if (_bomb.isActivated())
-		_bomb.explodes();
+		_bomb.explodes(player);
 }
+
 
 bool Game::Character::move(Engine::Engine &engine)
 {
