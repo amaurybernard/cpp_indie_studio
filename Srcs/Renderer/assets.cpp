@@ -166,6 +166,41 @@ namespace RR {
 			return newPlayer;
 		}
 
+		irr::scene::IParticleSystemSceneNode *addFlame(
+			irr::core::vector3df &pos,
+			irr::scene::ISceneNode *flameNode,
+			irr::u32 duration
+		)
+		{
+			auto sceneMgr =
+				Engine::Engine::instance()->getSceneManager();
+			irr::scene::IParticleSystemSceneNode* fn =
+				sceneMgr->addParticleSystemSceneNode(false);
+			fn->setParent(flameNode);
+			irr::scene::ISceneNodeAnimator* del = sceneMgr->createDeleteAnimator(duration);
+			irr::scene::IParticleEmitter* em = fn->createBoxEmitter(
+				irr::core::aabbox3d<irr::f32>(-7,0,-7,7,1,7), // emitter size
+				irr::core::vector3df(0.0f,0.06f,0.0f),   // initial direction
+				10,20,                             // emit rate
+				irr::video::SColor(0,255,0,0),       // darkest color
+				irr::video::SColor(0,125,0,0),       // brightest color
+				200,800,2,                         // min and max age, angle
+				irr::core::dimension2df(1.f,1.f),         // min size
+				irr::core::dimension2df(10.f,10.f));        // max size
+			fn->setEmitter(em); // this grabs the emitter
+			em->drop(); // so we can drop it here without deleting it
+			irr::scene::IParticleAffector* paf = fn->createFadeOutParticleAffector();
+			fn->addAffector(paf); // same goes for the affector
+			paf->drop();
+			fn->setPosition(pos);
+			fn->setScale(irr::core::vector3df(0.01,0.01,0.01));
+			fn->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+			fn->setMaterialFlag(irr::video::EMF_ZWRITE_ENABLE, false);
+			fn->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
+			fn->addAnimator(del);
+			return fn;
+		}
+
 		irr::scene::IAnimatedMesh *addBomb(
 			irr::core::vector3df &pos,
 			irr::scene::ISceneNode *bombNode
@@ -273,7 +308,7 @@ namespace RR {
 					float x = 0.0f + (i * 10.0f);
 					irr::core::vector3df pos(x,10.0f,z);
 					if (rawMap[j][i] == 'O')
-						Scene::addBomb(pos, flameNode);
+						Scene::addFlame(pos, flameNode, 1000);
 				}
 			}
 		}
