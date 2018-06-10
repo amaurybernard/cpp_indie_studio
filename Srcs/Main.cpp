@@ -29,10 +29,7 @@ int 	main(void)
 			renderer.render(game.getMap(), game.getMapSize());
 		}
 		game.getMap().putMap();
-//		player1.move(*engine);
-//		player1.testBomb();
-//		if (engine->getEventReceiver()->isKeyDown(irr::KEY_SPACE))
-//			player1.placeBomb();
+		game.loop(*engine);
 	}
 	engine->drop();
 	return (RT_SUCCESS);

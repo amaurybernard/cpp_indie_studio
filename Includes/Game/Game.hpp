@@ -10,6 +10,7 @@
 
 #include <vector>
 #include <irrlicht/irrlicht.h>
+#include "Engine/Engine.hpp"
 #include "Game/Character.hpp"
 #include "Game/Map.hpp"
 
@@ -19,7 +20,9 @@ namespace Game {
 		Game(size_t nbPlayer, size_t mapSize, size_t density);
 		~Game();
 		Map &getMap();
+		void	loop(Engine::Engine &engine);
 		size_t getMapSize();
+		Character getPlayer(size_t nb);
 	private:
 		Map			_map;
 		std::vector <Character>	_player;

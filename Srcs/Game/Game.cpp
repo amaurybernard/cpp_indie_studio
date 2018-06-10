@@ -25,6 +25,20 @@ Game::Game::~Game()
 {
 }
 
+void Game::Game::loop(Engine::Engine &engine)
+{
+	_player[0].move(engine);
+	_player[0].testBomb();
+
+	if (engine.getEventReceiver()->isKeyDown(irr::KEY_SPACE))
+		_player[0].placeBomb();
+}
+
+Game::Character Game::Game::getPlayer(size_t nb)
+{
+	return _player[nb];
+}
+
 Game::Map &Game::Game::getMap()
 {
 	return _map;
