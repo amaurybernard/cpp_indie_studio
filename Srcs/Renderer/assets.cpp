@@ -161,7 +161,6 @@ namespace RR {
 			node->setRotation(RR::m3df(-90.0f, 180.0f, 0.0f));
 			node->setMaterialTexture(0,
 				driver->getTexture("./models/Bombermap.tga"));
-			//sceneMgr->getMeshManipulator()->makePlanarTextureMapping(newPlayer->getMesh(0),0.004f);
 			node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 			return newPlayer;
 		}
@@ -189,7 +188,8 @@ namespace RR {
 				irr::core::dimension2df(10.f,10.f));        // max size
 			fn->setEmitter(em); // this grabs the emitter
 			em->drop(); // so we can drop it here without deleting it
-			irr::scene::IParticleAffector* paf = fn->createFadeOutParticleAffector();
+			irr::scene::IParticleAffector* paf =
+				fn->createFadeOutParticleAffector();
 			fn->addAffector(paf); // same goes for the affector
 			paf->drop();
 			fn->setPosition(pos);
