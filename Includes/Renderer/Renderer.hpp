@@ -28,7 +28,7 @@ namespace RR {
 		/* public function */
 		public:
 		void init(Game::Map &, size_t);
-		void render();
+		void gameover(int);
 		void render(Game::Map &, size_t size);
 
 		/* protected attribute */

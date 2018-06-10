@@ -52,10 +52,21 @@ namespace RR {
 		//return mEngine = renderer.mEngine; quand amaury aura implementer la forme canonique
 	}
 
-	void Renderer::render()
+	void Renderer::gameover(int winnerNum)
 	{
+		irr::video::SColor backColor(255,0,0,0);
+		irr::core::stringw str("player ");
+		irr::core::stringw pnum(std::to_string(winnerNum).c_str());
+
+		str += pnum;
+		str += " Win";
 		mDriver.beginScene(true, true, mBackColor);
-		mSceneMgr.drawAll();
+		irr::gui::IGUIFont* font =
+			mDevice.getGUIEnvironment()->getFont(
+				"./textures/myfont.xml");
+		font->draw(str,
+			irr::core::rect<irr::s32>(1600,10,300,50),
+			irr::video::SColor(255,0,0,255));
 		mDriver.endScene();
 	}
 
