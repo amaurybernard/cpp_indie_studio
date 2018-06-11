@@ -112,74 +112,88 @@ bool Game::Character::isDead()
 
 bool Game::Character::move(Engine::Engine &engine)
 {
-	if (engine.getEventReceiver()->isKeyDown(irr::KEY_UP))
-		return moveUp();
-	else if (engine.getEventReceiver()->isKeyDown(irr::KEY_DOWN))
-		return moveDown();
-	else if (engine.getEventReceiver()->isKeyDown(irr::KEY_LEFT))
-		return moveRight();
-	else if (engine.getEventReceiver()->isKeyDown(irr::KEY_RIGHT))
-		return moveLeft();
+	printf("hp : %d\n", _hp);
+	if (_hp > 0) {
+		if (engine.getEventReceiver()->isKeyDown(irr::KEY_UP))
+			return moveUp();
+		else if (engine.getEventReceiver()->isKeyDown(irr::KEY_DOWN))
+			return moveDown();
+		else if (engine.getEventReceiver()->isKeyDown(irr::KEY_LEFT))
+			return moveRight();
+		else if (engine.getEventReceiver()->isKeyDown(irr::KEY_RIGHT))
+			return moveLeft();
+	}
 	return false;
 }
 
 bool Game::Character::move(Engine::Engine &engine, int i)
 {
-	if (i == -1)
-		i = i + 1;
-	if (engine.getEventReceiver()->isKeyDown(irr::KEY_KEY_Z) ||
-	    engine.getEventReceiver()->isKeyDown(irr::KEY_KEY_W))
-		return moveUp();
-	else if (engine.getEventReceiver()->isKeyDown(irr::KEY_KEY_S))
-		return moveDown();
-	else if (engine.getEventReceiver()->isKeyDown(irr::KEY_KEY_Q) ||
-		 engine.getEventReceiver()->isKeyDown(irr::KEY_KEY_A))
-		return moveRight();
-	else if (engine.getEventReceiver()->isKeyDown(irr::KEY_KEY_D))
-		return moveLeft();
+	printf("hp : %d\n", _hp);
+	if (_hp > 0) {
+		if (i == -1)
+			i = i + 1;
+		if (engine.getEventReceiver()->isKeyDown(irr::KEY_KEY_Z) ||
+			engine.getEventReceiver()->isKeyDown(irr::KEY_KEY_W))
+			return moveUp();
+		else if (engine.getEventReceiver()->isKeyDown(irr::KEY_KEY_S))
+			return moveDown();
+		else if (engine.getEventReceiver()->isKeyDown(irr::KEY_KEY_Q) ||
+			engine.getEventReceiver()->isKeyDown(irr::KEY_KEY_A))
+			return moveRight();
+		else if (engine.getEventReceiver()->isKeyDown(irr::KEY_KEY_D))
+			return moveLeft();
+	}
 	return false;
 }
 
 bool Game::Character::moveUp()
 {
-	if (_direction == Game::Character::Oriented::UP)
-		if (_map.moveCharacter(_nb, _x, _y, _x, (_y - 1))) {
-			_y -= 1;
-			return true;
-		}
-	_direction = Game::Character::Oriented::UP;
+	if (_hp > 0) {
+		if (_direction == Game::Character::Oriented::UP)
+			if (_map.moveCharacter(_nb, _x, _y, _x, (_y - 1))) {
+				_y -= 1;
+				return true;
+			}
+		_direction = Game::Character::Oriented::UP;
+	}
 	return false;
 }
 
 bool Game::Character::moveDown()
 {
-	if (_direction == Game::Character::Oriented::DOWN)
-		if (_map.moveCharacter(_nb, _x, _y, _x, (_y + 1))) {
-			_y += 1;
-			return true;
-		}
-	_direction = Game::Character::Oriented::DOWN;
+	if (_hp > 0) {
+		if (_direction == Game::Character::Oriented::DOWN)
+			if (_map.moveCharacter(_nb, _x, _y, _x, (_y + 1))) {
+				_y += 1;
+				return true;
+			}
+		_direction = Game::Character::Oriented::DOWN;
+	}
 	return false;
 }
 
 bool Game::Character::moveRight()
 {
-	if (_direction == Game::Character::Oriented::RIGHT)
-		if (_map.moveCharacter(_nb, _x, _y, (_x + 1), _y)) {
-			_x += 1;
-			return true;
-		}
-	_direction = Game::Character::Oriented::RIGHT;
+	if (_hp > 0) {
+		if (_direction == Game::Character::Oriented::RIGHT)
+			if (_map.moveCharacter(_nb, _x, _y, (_x + 1), _y)) {
+				_x += 1;
+				return true;
+			}
+		_direction = Game::Character::Oriented::RIGHT;
+	}
 	return false;
 }
 
 bool Game::Character::moveLeft()
 {
-	if (_direction == Game::Character::Oriented::LEFT)
-		if (_map.moveCharacter(_nb, _x, _y, (_x - 1), _y)) {
-			_x -= 1;
-			return true;
-		}
-	_direction = Game::Character::Oriented::LEFT;
+	if (_hp > 0) {
+		if (_direction == Game::Character::Oriented::LEFT)
+			if (_map.moveCharacter(_nb, _x, _y, (_x - 1), _y)) {
+				_x -= 1;
+				return true;
+			}
+		_direction = Game::Character::Oriented::LEFT;
+	}
 	return false;
 }
