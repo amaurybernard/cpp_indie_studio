@@ -6,6 +6,7 @@
 //
 
 #include <irrlicht/irrlicht.h>
+#include <iostream>
 #include "Game/Game.hpp"
 #include "Bomberman.hpp"
 
@@ -45,6 +46,7 @@ size_t Game::Game::loop(Engine::Engine &engine)
 		size_t y = 0;
 		bool playerAlone = true;
 		for (Character *player2 : _player) {
+			std::cout << "player: " << y << " hp:" << player2->getHP() << std::endl;
 			if (!player2->isDead() && i != y)
 				playerAlone = false;
 			y++;

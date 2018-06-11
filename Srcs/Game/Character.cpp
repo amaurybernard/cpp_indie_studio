@@ -112,7 +112,6 @@ bool Game::Character::isDead()
 
 bool Game::Character::move(Engine::Engine &engine)
 {
-	printf("hp : %d\n", _hp);
 	if (_hp > 0) {
 		if (engine.getEventReceiver()->isKeyDown(irr::KEY_UP))
 			return moveUp();
@@ -128,7 +127,6 @@ bool Game::Character::move(Engine::Engine &engine)
 
 bool Game::Character::move(Engine::Engine &engine, int i)
 {
-	printf("hp : %d\n", _hp);
 	if (_hp > 0) {
 		if (i == -1)
 			i = i + 1;
