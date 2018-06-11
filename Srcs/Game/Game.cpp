@@ -40,15 +40,17 @@ size_t Game::Game::loop(Engine::Engine &engine)
 		if (engine.getEventReceiver()->isKeyDown(irr::KEY_KEY_X))
 			_player[1]->placeBomb();
 	}
-
-	if (_player[0]->getHP() != 0 && _player[1]->getHP() == 0
-	&& _player[2]->getHP() == 0 && _player[3]->getHP() == 0)
-		return 0;
-	if (_player[0]->getHP() == 0 && ((_player[1]->getHP() != 0
-	&& _player[2]->getHP() == 0 && _player[3]->getHP() == 0) || !_player[1]->isHuman()))
-		return 1;
-	if (_player[0]->getHP() == 0 && _player[1]->getHP() == 0)
-		return 2;
+	size_t maxHuman = _player[1]->isHuman() ? 2 : 1;
+	for (size_t i = 0 ; i < maxHuman ; i++) {
+		size_t y = 0;
+		for (Character *player2 : _player) {
+			if (player2->isDead() && i != y)
+				return i;
+			y++;
+		}
+	}
+	if (_player[0]->isDead() && (_player[1]->isDead() || _player[1]->isuman()))
+		return 3;
 	return NO_WINNER;
 }
 
