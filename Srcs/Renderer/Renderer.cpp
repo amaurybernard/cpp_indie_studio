@@ -54,7 +54,7 @@ namespace RR {
 	{
 		irr::video::SColor backColor(255,0,0,0);
 		irr::core::stringw str("player ");
-		irr::core::stringw pnum(std::to_string(winnerNum).c_str());
+		irr::core::stringw pnum(std::to_string(winnerNum + 1).c_str());
 
 		str += pnum;
 		str += " Win";
@@ -63,7 +63,7 @@ namespace RR {
 			mDevice.getGUIEnvironment()->getFont(
 				"./textures/myfont.xml");
 		font->draw(str,
-			irr::core::rect<irr::s32>(1600,10,300,50),
+			irr::core::rect<irr::s32>(850,450,300,50),
 			irr::video::SColor(255,0,0,255));
 		mDriver.endScene();
 	}
