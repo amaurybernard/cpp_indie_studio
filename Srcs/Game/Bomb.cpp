@@ -37,7 +37,6 @@ void	Game::Bomb::replaceFlames(char c, std::vector<Character *> players)
 	char on = 0;
 	for (i = 1 ; i <= DEFAULT_RANGE ; i++) {
 		on = _map.getCase(_x, _y - i);
-		on = (on == '4') ? '0' : on;
 		if (on == '#')
 			break;
 		else if (on > '0' && on <= '4')
@@ -46,7 +45,6 @@ void	Game::Bomb::replaceFlames(char c, std::vector<Character *> players)
 	}
 	for (i = 1 ; i <= DEFAULT_RANGE ; i++) {
 		on = _map.getCase(_x, _y + i);
-		on = (on == '4') ? '0' : on;
 		if (on == '#')
 			break;
 		else if (on > '0' && on <= '4')
@@ -55,7 +53,6 @@ void	Game::Bomb::replaceFlames(char c, std::vector<Character *> players)
 	}
 	for (i = 1 ; i <= DEFAULT_RANGE ; i++) {
 		on = _map.getCase(_x - i, _y);
-		on = (on == '4') ? '0' : on;
 		if (on == '#')
 			break;
 		else if (on > '0' && on <= '4')
@@ -64,7 +61,6 @@ void	Game::Bomb::replaceFlames(char c, std::vector<Character *> players)
 	}
 	for (i = 1 ; i <= DEFAULT_RANGE ; i++) {
 		on = _map.getCase(_x + i, _y);
-		on = (on == '4') ? '0' : on;
 		if (on == '#')
 			break;
 		else if (on > '0' && on <= '4')
