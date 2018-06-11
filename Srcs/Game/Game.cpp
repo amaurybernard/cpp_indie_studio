@@ -43,13 +43,16 @@ size_t Game::Game::loop(Engine::Engine &engine)
 	size_t maxHuman = _player[1]->isHuman() ? 2 : 1;
 	for (size_t i = 0 ; i < maxHuman ; i++) {
 		size_t y = 0;
+		bool playerAlone = true;
 		for (Character *player2 : _player) {
-			if (player2->isDead() && i != y)
-				return i;
+			if (!player2->isDead() && i != y)
+				playerAlone = false;
 			y++;
 		}
+		if (playerAlone)
+			return i;
 	}
-	if (_player[0]->isDead() && (_player[1]->isDead() || _player[1]->isHuman()))
+	if (_player[0]->isDead() && (_player[1]->isDead() || !_player[1]->isHuman()))
 		return 3;
 	return NO_WINNER;
 }

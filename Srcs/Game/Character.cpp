@@ -107,9 +107,7 @@ bool Game::Character::loseHP(size_t damages)
 
 bool Game::Character::isDead()
 {
-	if (_hp <= 0)
-		return true;
-	return false;
+	return _hp == 0;
 }
 
 bool Game::Character::move(Engine::Engine &engine)
