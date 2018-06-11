@@ -34,7 +34,7 @@ namespace Game {
 		void generateBlocks(size_t density);
 		void resetMap();
 		size_t getCase(size_t x, size_t y);
-		std::vector<std::string> getMap();
+		std::vector<std::string> &getMap();
 		void putMap();
 
 		bool isBlocked(size_t x, size_t y);

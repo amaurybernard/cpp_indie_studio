@@ -86,7 +86,7 @@ size_t	Game::Map::getCase(size_t x, size_t y)
 	return (_map[y][x]);
 }
 
-std::vector<std::string> Game::Map::getMap()
+std::vector<std::string> &Game::Map::getMap()
 {
 	return (_map);
 }

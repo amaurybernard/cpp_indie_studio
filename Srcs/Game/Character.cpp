@@ -95,6 +95,7 @@ bool Game::Character::loseHP(size_t damages)
 {
 	if (_lastDamage + 2 < std::time(nullptr)) {
 		if (damages >= _hp || _hp > 100 || _hp == 0) {
+			//_map.getMap()[_x][_y] = ' ';
 			_hp = 0;
 			return true;
 		} else {
