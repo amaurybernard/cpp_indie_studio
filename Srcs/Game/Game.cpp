@@ -49,7 +49,7 @@ size_t Game::Game::loop(Engine::Engine &engine)
 			y++;
 		}
 	}
-	if (_player[0]->isDead() && (_player[1]->isDead() || _player[1]->isuman()))
+	if (_player[0]->isDead() && (_player[1]->isDead() || _player[1]->isHuman()))
 		return 3;
 	return NO_WINNER;
 }
