@@ -91,11 +91,11 @@ namespace RR {
 			if (orientation == Game::Character::UP)
 				pNode->setRotation(RR::m3df(-90, 0, 0));
 			else if (orientation == Game::Character::RIGHT)
-				pNode->setRotation(RR::m3df(-90, 90, 0));
+				pNode->setRotation(RR::m3df(-90, 270, 0));
 			else if (orientation == Game::Character::DOWN)
 				pNode->setRotation(RR::m3df(-90, 180, 0));
 			else
-				pNode->setRotation(RR::m3df(-90, 270, 0));
+				pNode->setRotation(RR::m3df(-90, 90, 0));
 
 		}
 
