@@ -38,13 +38,15 @@ int 	main(void)
 				rendererInit = true;
 			}
 			if (engine->getDevice()->isWindowActive()) {
-				renderer.render(game->getMap(),
-					game->getMapSize(),
-					game->getPlayers());
+				size_t nb_winner = game->loop(*engine);
+				if (nb_winner != Game::NO_WINNER) {
+					renderer.gameover(nb_winner);
+				} else {
+					renderer.render(game->getMap(),
+						game->getMapSize(),
+						game->getPlayers());
+				}
 			}
-			size_t nb_winner = game->loop(*engine);
-			if(nb_winner != Game::NO_WINNER)
-				renderer.gameover(nb_winner);
 		} else {
 			game = menu.getSelectedGame();
 		}

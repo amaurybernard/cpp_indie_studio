@@ -55,7 +55,7 @@ namespace Game {
 		time_t       _lastDamage = 0;
 		Oriented	_direction; // Face direction
 		long		_score = 0; // score of the player
-		bool		_human; // is a human or an iA ?
+		bool		_human = false; // is a human or an iA ?
 	};
 }
 
