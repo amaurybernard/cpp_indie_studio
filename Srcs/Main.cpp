@@ -51,6 +51,8 @@ int 	main(void)
 			game = menu.getSelectedGame();
 		}
 	}
+	if (game)
+		engine->saveGame(game->getMap().getMap());
 	engine->drop();
 	return (RT_SUCCESS);
 }

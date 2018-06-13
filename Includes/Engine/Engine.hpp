@@ -32,7 +32,7 @@ namespace Engine {
 		irr::video::IVideoDriver 	*getDriver(void) const;
 		bool 				keepLooping(void);
 		/* @Return true in case of error */
-		bool saveGame(const std::vector<std::string> map, std::string name = "");
+		bool saveGame(const std::vector<std::string> &map, std::string name = "");
 
 	public:
 		static constexpr irr::u32 		DIM_VERTICAL = 1080;

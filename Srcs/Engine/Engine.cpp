@@ -74,7 +74,7 @@ void Engine::Engine::drop(void)
 	delete(_instance);
 }
 
-bool Engine::Engine::saveGame(const std::vector<std::string> map, std::string name)
+bool Engine::Engine::saveGame(const std::vector<std::string> &map, std::string name)
 {
 	if (name.empty())
 		name = std::to_string(std::time(nullptr));
