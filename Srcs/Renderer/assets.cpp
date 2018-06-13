@@ -346,13 +346,13 @@ namespace RR {
 		void drawText(std::vector<Game::Character *> characters)
 		{
 			RR::printScore("1", 23, irr::core::rect<irr::s32>(1600,10,300,50), characters[0]);
-			RR::printScore("2", 44, irr::core::rect<irr::s32>(40,10,300,50), characters[3]);
-			RR::printScore("3", 67, irr::core::rect<irr::s32>(40,950,300,50), characters[2]);
-			RR::printScore("4", 38, irr::core::rect<irr::s32>(1600,950,300,50), characters[2]);
+			RR::printScore("2", 44, irr::core::rect<irr::s32>(40,10,300,50), characters[1]);
+			RR::printScore("4", 67, irr::core::rect<irr::s32>(40,950,300,50), characters[3]);
+			RR::printScore("3", 38, irr::core::rect<irr::s32>(1600,950,300,50), characters[2]);
 			RR::printLife("1", 23, irr::core::rect<irr::s32>(1600,40,300,50), characters[0]);
 			RR::printLife("2", 44, irr::core::rect<irr::s32>(40,40,300,50), characters[1]);
-			RR::printLife("3", 67, irr::core::rect<irr::s32>(40,910,300,50), characters[3]);
-			RR::printLife("4", 38, irr::core::rect<irr::s32>(1600,910,300,50), characters[2]);
+			RR::printLife("4", 67, irr::core::rect<irr::s32>(40,910,300,50), characters[3]);
+			RR::printLife("3", 38, irr::core::rect<irr::s32>(1600,910,300,50), characters[2]);
 		}
 	}
 }

@@ -36,7 +36,7 @@ namespace Game {
 		size_t getCase(size_t x, size_t y);
 		std::vector<std::string> &getMap();
 		void putMap();
-
+		void deleteCharacter(size_t x, size_t y);
 		bool isBlocked(size_t x, size_t y);
 		bool moveCharacter(size_t player_nb, size_t x1, size_t y1, size_t x2, size_t y2);
 

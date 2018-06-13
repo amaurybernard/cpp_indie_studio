@@ -26,6 +26,7 @@ namespace Game {
 		bool loseHP(size_t damage);
 		bool isDead();
 		bool isHuman();
+		void deleteCharacter();
 
 		bool move(Engine::Engine &engine);
 		bool move(Engine::Engine &engine, int i);

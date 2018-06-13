@@ -115,6 +115,15 @@ bool	Game::Map::moveCharacter(size_t player_nb, size_t x1, size_t y1, size_t x2,
 	return false;
 }
 
+void Game::Map::deleteCharacter(size_t x, size_t y)
+{
+	if (_map[y][x] == '1' ||
+	    _map[y][x] == '2' ||
+	    _map[y][x] == '3' ||
+	    _map[y][x] == '4')
+		_map[y][x] = ' ';
+}
+
 void Game::Map::changeCase(size_t x, size_t y, char c)
 {
 	if ((x > 0 && x <= _size) &&

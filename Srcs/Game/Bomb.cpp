@@ -39,7 +39,7 @@ void	Game::Bomb::replaceFlames(char c, std::vector<Character *> players)
 		on = _map.getCase(_x, _y - i);
 		if (on == '#')
 			break;
-		else if (on > '0' && on <= '4')
+		else if (on >= '1' && on <= '4') 
 			players[on - '1']->loseHP(DEFAULT_DAMAGE);
 		_map.changeCase(_x, _y - i, c);
 	}
@@ -47,7 +47,7 @@ void	Game::Bomb::replaceFlames(char c, std::vector<Character *> players)
 		on = _map.getCase(_x, _y + i);
 		if (on == '#')
 			break;
-		else if (on > '0' && on <= '4')
+		else if (on >= '1' && on <= '4')
 			players[on - '1']->loseHP(DEFAULT_DAMAGE);
 		_map.changeCase(_x, _y + i, c);
 	}
@@ -55,7 +55,7 @@ void	Game::Bomb::replaceFlames(char c, std::vector<Character *> players)
 		on = _map.getCase(_x - i, _y);
 		if (on == '#')
 			break;
-		else if (on > '0' && on <= '4')
+		else if (on >= '1' && on <= '4')
 			players[on - '1']->loseHP(DEFAULT_DAMAGE);
 		_map.changeCase(_x - i, _y, c);
 	}
@@ -63,7 +63,7 @@ void	Game::Bomb::replaceFlames(char c, std::vector<Character *> players)
 		on = _map.getCase(_x + i, _y);
 		if (on == '#')
 			break;
-		else if (on > '0' && on <= '4')
+		else if (on >= '1' && on <= '4')
 			players[on - '1']->loseHP(DEFAULT_DAMAGE);
 		_map.changeCase(_x + i, _y, c);
 	}

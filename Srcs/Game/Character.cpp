@@ -11,26 +11,25 @@
 #include "Game/Character.hpp"
 #include "Bomberman.hpp"
 
-#include <iostream>
-
 Game::Character::Character(Game::Map &map, size_t nb, bool human)
 	: _map(map), _bomb(map), _nb(nb), _hp(DEFAULT_HP), _human(human)
 {
+	size_t size = _map.getSize();
 	switch (nb) {
         case 1: _x = 1;
 		_y = 1;
 		_direction = Game::Character::Oriented::DOWN;
 	        break;
-        case 2: _x = map.getSize();
+        case 2: _x = size;
 		_y = 1;
 		_direction = Game::Character::Oriented::LEFT;
                 break;
         case 3: _x = 1;
-		_y = map.getSize();
+		_y = size;
 		_direction = Game::Character::Oriented::UP;
 		break;
-        case 4: _x = map.getSize();
-		_y = map.getSize();
+        case 4: _x = size;
+		_y = size;
 		_direction = Game::Character::Oriented::RIGHT;
                 break;
         }
@@ -91,11 +90,16 @@ void Game::Character::testBomb(std::vector<Character *> player)
 		_bomb.explodes(player);
 }
 
+void	Game::Character::deleteCharacter()
+{
+	_map.deleteCharacter(_x, _y);
+}
+
 bool Game::Character::loseHP(size_t damages)
 {
 	if (_lastDamage + 2 < std::time(nullptr)) {
 		if (damages >= _hp || _hp > 100 || _hp == 0) {
-			//_map.getMap()[_x][_y] = ' ';
+			deleteCharacter();
 			_hp = 0;
 			return true;
 		} else {

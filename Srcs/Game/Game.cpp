@@ -6,7 +6,6 @@
 //
 
 #include <irrlicht/irrlicht.h>
-#include <iostream>
 #include "Game/Game.hpp"
 #include "Bomberman.hpp"
 
